@@ -51,7 +51,7 @@ const curdoperationSlice = createSlice({
       .addCase(addProduct.fulfilled, (state, { payload }) => {
         state.upload_status = "Product added successfully";
         state.isAdded = true;
-        state.redirectProduct = "/addproduct";
+        state.redirectProduct = "/addpost";
       })
       .addCase(addProduct.rejected, (state) => {
         state.upload_status = "failed";

@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signin } from "../../Redux/authSlice";
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography, CircularProgress } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
+
+const LIGHT_GREEN = "#8bc34a";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -28,9 +30,10 @@ export default function Login() {
     },
     onSuccess: (data) => {
       localStorage.setItem("token", data.token);
+      navigate("/"); // Redirect after successful login
     },
     onError: (error) => {
-      console.error("login failed", error);
+      console.error("Login failed", error);
     },
   });
 
@@ -38,18 +41,20 @@ export default function Login() {
     mutation.mutate(data);
   };
 
-  const RedirectUser = () => {
-    let token = localStorage.getItem("token");
-    let isLogin = window.location.pathname.toLowerCase() === "/login";
-
-    if (token !== null && token !== undefined && token !== "") {
-      isLogin && navigate("/");
-    }
-  };
-
   useEffect(() => {
+    const RedirectUser = () => {
+      let token = localStorage.getItem("token");
+      let isLogin = window.location.pathname.toLowerCase() === "/login";
+  
+      if (token) {
+        isLogin && navigate("/");
+      }
+    };
+  
     RedirectUser();
-  }, [reDirectHome, navigate, mutation.onSuccess]);
+  }, [reDirectHome, navigate, mutation.onSuccess]); // Removed RedirectUser from here
+  
+  
 
   return (
     <>
@@ -61,7 +66,7 @@ export default function Login() {
           justifyContent: "center",
           height: "72vh",
           mt: 5,
-          backgroundColor: "#8bc34a",
+          backgroundColor: LIGHT_GREEN,
         }}
       >
         <Typography component="h1" variant="h5" sx={{ color: "black" }}>
@@ -76,9 +81,9 @@ export default function Login() {
             mr: 4,
             p: 4,
             borderRadius: 2,
-            bgcolor: "black", // Set background color to black
+            bgcolor: "black",
             boxShadow: 3,
-            maxWidth: 400, // Optional: Restrict the maximum width of the form
+            maxWidth: 400,
           }}
         >
           <Grid container spacing={2}>
@@ -87,23 +92,24 @@ export default function Login() {
                 fullWidth
                 id="email"
                 label="Email Address"
+                placeholder="Enter your email"
                 {...register("email", {
                   required: "Please enter email address",
                 })}
                 error={Boolean(errors.email)}
                 helperText={errors.email?.message}
-                InputLabelProps={{ style: { color: "#8bc34a" } }} // Label color
+                InputLabelProps={{ style: { color: LIGHT_GREEN } }} // Label color
                 InputProps={{
-                  style: { color: "#8bc34a" }, // Input text color
+                  style: { color: LIGHT_GREEN }, // Input text color
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color
+                      borderColor: LIGHT_GREEN, // Outline color
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color on hover
+                      borderColor: LIGHT_GREEN, // Outline color on hover
                     },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color on focus
+                      borderColor: LIGHT_GREEN, // Outline color on focus
                     },
                   },
                 }}
@@ -114,24 +120,25 @@ export default function Login() {
                 fullWidth
                 id="password"
                 label="Password"
+                placeholder="Enter your password"
                 type="password"
                 {...register("password", {
                   required: "Please enter your password",
                 })}
                 error={Boolean(errors.password)}
                 helperText={errors.password?.message}
-                InputLabelProps={{ style: { color: "#8bc34a" } }} // Label color
+                InputLabelProps={{ style: { color: LIGHT_GREEN } }} // Label color
                 InputProps={{
-                  style: { color: "#8bc34a" }, // Input text color
+                  style: { color: LIGHT_GREEN }, // Input text color
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color
+                      borderColor: LIGHT_GREEN, // Outline color
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color on hover
+                      borderColor: LIGHT_GREEN, // Outline color on hover
                     },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color on focus
+                      borderColor: LIGHT_GREEN, // Outline color on focus
                     },
                   },
                 }}
@@ -148,10 +155,10 @@ export default function Login() {
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{ mt: 2, mb: 2, bgcolor: "#8bc34a", color: "black" }} // Button color and text color
+                  sx={{ mt: 2, mb: 2, bgcolor: LIGHT_GREEN, color: "black" }} // Button color and text color
                   disabled={isSubmitting}
                 >
-                  Login
+                  {isSubmitting ? <CircularProgress size={24} color="inherit" /> : "Login"}
                 </Button>
               </Box>
             </Grid>
@@ -162,12 +169,12 @@ export default function Login() {
             alignItems="center"
             sx={{ mt: 2 }}
           >
-            <Typography sx={{ mr: 1, color: "#8bc34a" }}>Not registered? Please </Typography>
+            <Typography sx={{ mr: 1, color: LIGHT_GREEN }}>Not registered? Please </Typography>
             <Button
               component={Link}
               to="/register"
               variant="contained"
-              sx={{ bgcolor: "#8bc34a", color: "black" }} // Button color and text color
+              sx={{ bgcolor: LIGHT_GREEN, color: "black" }} // Button color and text color
             >
               Register
             </Button>

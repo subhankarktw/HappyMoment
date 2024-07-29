@@ -10,9 +10,7 @@ export default function Addproduct() {
   const [img, setImg] = useState(null);
   const [imgName, setImgName] = useState("");
   const dispatch = useDispatch();
-  const { isAdded, redirectProduct } = useSelector(
-    (state) => state.productauthentication
-  );
+  const { isAdded } = useSelector((state) => state.productauthentication);
 
   const {
     register,
@@ -27,7 +25,7 @@ export default function Addproduct() {
   });
 
   const handleFileChange = (e) => {
-    let file = e.target.files[0];
+    const file = e.target.files[0];
     if (file) {
       setImg(file);
       setImgName(file.name);
@@ -35,7 +33,7 @@ export default function Addproduct() {
   };
 
   const onSubmit = (data) => {
-    let formdata = new FormData();
+    const formdata = new FormData();
     formdata.append("title", data.title);
     formdata.append("description", data.description);
     formdata.append("image", img);
@@ -46,11 +44,11 @@ export default function Addproduct() {
   };
 
   useEffect(() => {
-    if (isAdded && redirectProduct) {
-      navigate(redirectProduct);
+    if (isAdded) {
+      navigate("/addpost");
       dispatch(restAddedState());
     }
-  }, [isAdded, redirectProduct, navigate, dispatch]);
+  }, [isAdded, navigate, dispatch]);
 
   return (
     <Box
@@ -60,9 +58,8 @@ export default function Addproduct() {
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
-        bgcolor: "black", // Set background color to black
-        color: "#8bc34a", // Set text color to #8bc34a
-        // Set a consistent margin
+        bgcolor: "black",
+        color: "#8bc34a",
       }}
     >
       <Typography component="h1" variant="h5" sx={{ mt: 4 }}>
@@ -74,7 +71,7 @@ export default function Addproduct() {
         sx={{
           p: 4,
           borderRadius: 2,
-          bgcolor: "rgba(255, 255, 255, 0.1)", // Set form background to a darker white
+          bgcolor: "rgba(255, 255, 255, 0.1)",
           boxShadow: 3,
           maxWidth: 400,
           m: 2,
@@ -93,23 +90,23 @@ export default function Addproduct() {
               helperText={errors.title?.message}
               InputLabelProps={{
                 sx: {
-                  color: "#8bc34a", // Set label color to light green
+                  color: "#8bc34a",
                   "&.Mui-focused": {
-                    color: "#8bc34a", // Set label color when focused to light green
+                    color: "#8bc34a",
                   },
                 },
               }}
               InputProps={{
                 sx: {
-                  color: "#8bc34a", // Set input text color to light green
+                  color: "#8bc34a",
                   "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#8bc34a", // Set input border color to light green
+                    borderColor: "#8bc34a",
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#8bc34a", // Set input border color on hover to light green
+                    borderColor: "#8bc34a",
                   },
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#8bc34a", // Set input border color when focused to light green
+                    borderColor: "#8bc34a",
                   },
                 },
               }}
@@ -129,23 +126,23 @@ export default function Addproduct() {
               helperText={errors.description?.message}
               InputLabelProps={{
                 sx: {
-                  color: "#8bc34a", // Set label color to light green
+                  color: "#8bc34a",
                   "&.Mui-focused": {
-                    color: "#8bc34a", // Set label color when focused to light green
+                    color: "#8bc34a",
                   },
                 },
               }}
               InputProps={{
                 sx: {
-                  color: "#8bc34a", // Set input text color to light green
+                  color: "#8bc34a",
                   "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#8bc34a", // Set input border color to light green
+                    borderColor: "#8bc34a",
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#8bc34a", // Set input border color on hover to light green
+                    borderColor: "#8bc34a",
                   },
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#8bc34a", // Set input border color when focused to light green
+                    borderColor: "#8bc34a",
                   },
                 },
               }}
@@ -167,9 +164,7 @@ export default function Addproduct() {
                 id="image"
                 name="img"
                 onChange={handleFileChange}
-                style={{
-                  display: "none",
-                }}
+                style={{ display: "none" }}
               />
               <label htmlFor="image">
                 <Button
@@ -199,7 +194,7 @@ export default function Addproduct() {
               <Button
                 type="submit"
                 variant="contained"
-                sx={{ mt: 3, mb: 2, bgcolor: "#8bc34a", color: "black" }} // Set button color
+                sx={{ mt: 3, mb: 2, bgcolor: "#8bc34a", color: "black" }}
                 disabled={isSubmitting}
               >
                 Upload Post

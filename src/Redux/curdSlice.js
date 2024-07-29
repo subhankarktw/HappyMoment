@@ -5,7 +5,6 @@ const initialState = {
   upload_status: "idle",
   products: [],
   editProducts: {},
-  redirectProduct: null,
   isAdded: false,
   isUpdate: false,
   redirectShowProduct: null,
@@ -39,7 +38,7 @@ const curdoperationSlice = createSlice({
   reducers: {
     restAddedState: (state) => {
       state.isAdded = false;
-      state.redirectProduct = null;
+      // state.redirectProduct = null;
       state.isUpdate = false;
     },
   },
@@ -51,7 +50,7 @@ const curdoperationSlice = createSlice({
       .addCase(addProduct.fulfilled, (state, { payload }) => {
         state.upload_status = "Product added successfully";
         state.isAdded = true;
-        state.redirectProduct = "/addpost";
+        
       })
       .addCase(addProduct.rejected, (state) => {
         state.upload_status = "failed";

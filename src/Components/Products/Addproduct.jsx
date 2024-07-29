@@ -45,7 +45,7 @@ export default function Addproduct() {
 
   useEffect(() => {
     if (isAdded) {
-      navigate("/addpost");
+      navigate("/showpost");
       dispatch(restAddedState());
     }
   }, [isAdded, navigate, dispatch]);

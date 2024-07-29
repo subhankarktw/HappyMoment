@@ -64,8 +64,7 @@ export default function Login() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          height: "72vh",
-          mt: 5,
+          height: "100vh",
           backgroundColor: LIGHT_GREEN,
         }}
       >

@@ -58,11 +58,22 @@ export default function Addproduct() {
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
-        bgcolor: "black",
-        color: "#8bc34a",
+        color: "black",
+        backgroundImage: "url(images/pexels2.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center"
       }}
     >
-      <Typography component="h1" variant="h5" sx={{ mt: 4 }}>
+      <Typography 
+        component="h1" 
+        variant="h5" 
+        sx={{ 
+          mt: 4, 
+          color: "white", 
+          fontWeight: "800", 
+          textShadow: "2px 2px 4px rgba(0, 0, 0, 0.9)" // Added text shadow here
+        }}
+      >
         Add Post
       </Typography>
       <Box
@@ -71,7 +82,7 @@ export default function Addproduct() {
         sx={{
           p: 4,
           borderRadius: 2,
-          bgcolor: "rgba(255, 255, 255, 0.1)",
+          bgcolor: "rgba(255, 255, 255, 0.7)",
           boxShadow: 3,
           maxWidth: 400,
           m: 2,
@@ -90,23 +101,23 @@ export default function Addproduct() {
               helperText={errors.title?.message}
               InputLabelProps={{
                 sx: {
-                  color: "#8bc34a",
+                  color: "black",
                   "&.Mui-focused": {
-                    color: "#8bc34a",
+                    color: "black",
                   },
                 },
               }}
               InputProps={{
                 sx: {
-                  color: "#8bc34a",
+                  color: "black",
                   "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#8bc34a",
+                    borderColor: "black",
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#8bc34a",
+                    borderColor: "black",
                   },
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#8bc34a",
+                    borderColor: "black",
                   },
                 },
               }}
@@ -126,23 +137,23 @@ export default function Addproduct() {
               helperText={errors.description?.message}
               InputLabelProps={{
                 sx: {
-                  color: "#8bc34a",
+                  color: "black",
                   "&.Mui-focused": {
-                    color: "#8bc34a",
+                    color: "black",
                   },
                 },
               }}
               InputProps={{
                 sx: {
-                  color: "#8bc34a",
+                  color: "black",
                   "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#8bc34a",
+                    borderColor: "black",
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#8bc34a",
+                    borderColor: "black",
                   },
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#8bc34a",
+                    borderColor: "black",
                   },
                 },
               }}
@@ -169,14 +180,14 @@ export default function Addproduct() {
               <label htmlFor="image">
                 <Button
                   variant="contained"
-                  sx={{ bgcolor: "#8bc34a", color: "black" }}
+                  sx={{ bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
                   component="span"
                 >
                   Upload Image
                 </Button>
               </label>
               {imgName && (
-                <Typography variant="body2" sx={{ ml: 2, color: "#8bc34a" }}>
+                <Typography variant="body2" sx={{ ml: 2, color: "black" }}>
                   {imgName}
                 </Typography>
               )}
@@ -194,7 +205,7 @@ export default function Addproduct() {
               <Button
                 type="submit"
                 variant="contained"
-                sx={{ mt: 3, mb: 2, bgcolor: "#8bc34a", color: "black" }}
+                sx={{ bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
                 disabled={isSubmitting}
               >
                 Upload Post

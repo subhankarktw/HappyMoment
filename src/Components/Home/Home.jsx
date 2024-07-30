@@ -12,8 +12,8 @@ export default function Home() {
         padding: 4,
         mt: 4,
         gap: 4,
-        bgcolor: "black", // Set background color to black
-        color: "#8bc34a", // Set text color to #8bc34a
+        bgcolor: "white", // Set background color to black
+        color: "black", // Set text color to #8bc34a
       }}
     >
       {/* First Division: Blog Introduction */}

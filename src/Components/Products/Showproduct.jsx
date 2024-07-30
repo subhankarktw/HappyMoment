@@ -20,27 +20,28 @@ export default function Showproduct() {
         alignItems: "center",
         justifyContent: "center",
         minHeight: "100vh",
-        bgcolor: "black", 
-        color: "#8bc34a", 
+        bgcolor: "white", 
+        color: "black", 
+        mt: 5,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <Typography component="h1" variant="h4" sx={{ mb: 2, mt:8}}>
+      <Typography component="h1" variant="h4" sx={{ mb: 2, mt: 6 }}>
         Posts
       </Typography>
 
-      <Grid container spacing={3} sx={{ mt: 1, px: 2, mb: 4 }}>
+      <Grid container spacing={3} sx={{ px: 2, m: 0 }}>
         {products && products.length > 0
           ? products.map((product) => (
               <Grid item xs={12} sm={6} md={4} key={product._id}>
-              <Card sx={{ bgcolor: "rgba(255, 255, 255, 0.1)", color: "#8bc34a", boxShadow: 3 }}>
-              <img
+                <Card sx={{ bgcolor: "white", color: "black", boxShadow: 3, margin: 2 }}> {/* Added margin here */}
+                  <img
                     src={`https://wtsacademy.dedicateddevelopers.us/uploads/product/${product?.image}`}
-                    height={250}
-                    width={300}
+                    height="100%"
+                    width="100%"
                     alt={product.title}
-                    style={{ marginTop: '6px',borderRadius:6 }}
+                    style={{ marginTop: '6px', borderRadius: 6 }}
                   />
                   <CardContent>
                     <Typography variant="h5" component="div">
@@ -53,7 +54,7 @@ export default function Showproduct() {
                   <Box display="flex" justifyContent="space-between" p={2}>
                     <Button
                       variant="contained"
-                      sx={{ bgcolor: "#8bc34a", color: "black" }}
+                      sx={{ bgcolor: "white", color: "black" }}
                       component={Link}
                       to={`/detail/${product._id}`} 
                     >

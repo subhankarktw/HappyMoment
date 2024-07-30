@@ -3,7 +3,14 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signin } from "../../Redux/authSlice";
-import { Box, Button, Grid, TextField, Typography, CircularProgress } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  TextField,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 
 export default function Login() {
@@ -57,20 +64,47 @@ export default function Login() {
       container
       sx={{
         height: "100vh",
-        justifyContent: "flex-end",
+        justifyContent: "center",
         backgroundImage: "url(images/pexel.jpg)",
         backgroundSize: "cover",
-        alignItems:"center",
         backgroundPosition: "center",
       }}
     >
+      {/* Image Container for Large Screens */}
+      <Grid
+        item
+        xs={false}
+        sm={6}
+        sx={{ display: { xs: "none", sm: "block" } }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+          }}
+        >
+          <img
+            src="images/children.png"
+            alt="Happy Moments"
+            style={{ width: "300px", height: "300px" }}
+          />
+          <Typography variant="h4" sx={{ color: "black", mt: 1 }}>
+            Happy Moments
+          </Typography>
+        </Box>
+      </Grid>
+
+      {/* Login Form Container */}
       <Grid
         item
         xs={12}
         sm={6}
         sx={{
           display: "flex",
-          justifyContent:"center",
+          justifyContent: "center",
           flexDirection: "column",
           alignItems: "center",
           height: "100vh",
@@ -78,7 +112,11 @@ export default function Login() {
           backdropFilter: "blur(8px)",
         }}
       >
-        <Typography component="h1" variant="h4" sx={{ mt: 6, color: "black", fontWeight: "bold" }}>
+        <Typography
+          component="h1"
+          variant="h4"
+          sx={{ mt: 6, color: "black", fontWeight: "bold" }}
+        >
           Login
         </Typography>
         <Box
@@ -171,7 +209,11 @@ export default function Login() {
                   }}
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? <CircularProgress size={24} color="inherit" /> : "Login"}
+                  {isSubmitting ? (
+                    <CircularProgress size={24} color="inherit" />
+                  ) : (
+                    "Login"
+                  )}
                 </Button>
               </Box>
             </Grid>
@@ -182,7 +224,9 @@ export default function Login() {
             alignItems="center"
             sx={{ mt: 2 }}
           >
-            <Typography sx={{ mr: 1, color: "black" }}>Not registered? Please </Typography>
+            <Typography sx={{ mr: 1, color: "black" }}>
+              Not registered? Please{" "}
+            </Typography>
             <Button
               component={Link}
               to="/register"

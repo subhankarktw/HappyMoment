@@ -5,20 +5,23 @@ import {
   Typography,
   TextField,
   CircularProgress,
-  Avatar,
+  Grid,
 } from "@mui/material";
 import { profile } from "../../Redux/authSlice"; // Ensure correct import path
+import { profile_Url } from "../../Helper/Helper";
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const { user, upload_status, profilePic } = useSelector(
+  const { user, upload_status } = useSelector(
     (state) => state.authentication
   );
+
+ 
 
   useEffect(() => {
     dispatch(profile());
   }, [dispatch]);
-
+  const profilePicUrl = profile_Url(user.profile_pic);
   // Loading state
   if (upload_status === "loading") {
     return (
@@ -35,9 +38,6 @@ export default function Profile() {
     );
   }
 
-  // Log the profile picture URL for debugging
-  console.log("Profile Picture URL:", profilePic);
-
   return (
     <Box
       sx={{
@@ -46,25 +46,32 @@ export default function Profile() {
         justifyContent: "center",
         alignItems: "center",
         padding: 4,
-        height: "100vh",
         gap: 2,
-        backgroundColor: "black", // Set background color to black
-        color: "#8bc34a", // Set text color to light green
-        borderRadius: 1,
-        boxShadow: 1,
+        backgroundColor: "white", 
+        color: "black", 
+        borderRadius: 2,
+        boxShadow: 2,
       }}
     >
-      <Typography variant="h4" sx={{ marginBottom: 2 }}>
+      <Typography variant="h4" sx={{ marginBottom: 2, mt: 6 }}>
         User Profile
       </Typography>
 
-      <Avatar
-        alt="Profile Picture"
-        src={profilePic || "/path/to/default/profile-pic.png"} // Fallback image
-        sx={{ width: 100, height: 100, marginBottom: 2 }}
-      />
+      {user.profile_pic && (
+        <Grid item xs={12} container justifyContent="center">
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height:"100px" }}>
+            <img
+              src={profilePicUrl}
+              alt="Profile"
+              width="100px"
+              height="100px"
+              style={{ borderRadius: "50%" }}
+            />
+          </Box>
+        </Grid>
+      )}
 
-      <Box sx={{ width: "100%", maxWidth: 400 }}>
+      <Box sx={{ width: "100%", maxWidth: 400,  }}>
         <TextField
           label="First Name"
           variant="outlined"
@@ -74,21 +81,21 @@ export default function Profile() {
           InputProps={{
             readOnly: true,
             sx: {
-              color: "#8bc34a", // Set input text color to light green
+              color: "black", // Set input text color to black
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#8bc34a", // Set input border color to light green
+                borderColor: "black", // Set input border color to black
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#8bc34a", // Set input border color on hover to light green
+                borderColor: "black", // Set input border color on hover to black
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#8bc34a", // Set input border color when focused to light green
+                borderColor: "black", // Set input border color when focused to black
               },
             },
           }}
           InputLabelProps={{
             sx: {
-              color: "#8bc34a", // Set label color to light green
+              color: "black", // Set label color to black
             },
           }}
         />
@@ -101,21 +108,21 @@ export default function Profile() {
           InputProps={{
             readOnly: true,
             sx: {
-              color: "#8bc34a", // Set input text color to light green
+              color: "black", // Set input text color to black
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#8bc34a", // Set input border color to light green
+                borderColor: "black", // Set input border color to black
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#8bc34a", // Set input border color on hover to light green
+                borderColor: "black", // Set input border color on hover to black
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#8bc34a", // Set input border color when focused to light green
+                borderColor: "black", // Set input border color when focused to black
               },
             },
           }}
           InputLabelProps={{
             sx: {
-              color: "#8bc34a", // Set label color to light green
+              color: "black", // Set label color to black
             },
           }}
         />
@@ -128,21 +135,21 @@ export default function Profile() {
           InputProps={{
             readOnly: true,
             sx: {
-              color: "#8bc34a", // Set input text color to light green
+              color: "black", // Set input text color to black
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#8bc34a", // Set input border color to light green
+                borderColor: "black", // Set input border color to black
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#8bc34a", // Set input border color on hover to light green
+                borderColor: "black", // Set input border color on hover to black
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#8bc34a", // Set input border color when focused to light green
+                borderColor: "black", // Set input border color when focused to black
               },
             },
           }}
           InputLabelProps={{
             sx: {
-              color: "#8bc34a", // Set label color to light green
+              color: "black", // Set label color to black
             },
           }}
         />

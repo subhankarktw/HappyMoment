@@ -25,28 +25,12 @@ export const signin = createAsyncThunk("user/signin", async (formdata) => {
   }
 });
 
-export const profile = createAsyncThunk("user/profile-details", async (_, thunkAPI) => {
+export const profile = createAsyncThunk("user/profile-details", async () => {
   const res = await axiosInstance.get("/api/user/profile-details");
-  
-  // Extract the profile picture filename
-  const profilePicFilename = res.data?.data?.profile_pic;
-  
-  // Dispatch fetchProfilePic with the filename if it exists
-  if (profilePicFilename) {
-    thunkAPI.dispatch(fetchProfilePic(profilePicFilename));
-  }
-
   return res.data; // Ensure this matches the expected structure
 });
 
-export const fetchProfilePic = createAsyncThunk(
-  "user/fetchProfilePic",
-  async (filename) => {
-    // Construct the complete URL for the profile picture
-    const fullUrl = `https://wtsacademy.dedicateddevelopers.us/uploads/user/profile_pic/${filename}`;
-    return fullUrl; // Return the constructed URL
-  }
-);
+
 
 const authenticationSlice = createSlice({
   name: "authentication",
@@ -100,13 +84,7 @@ const authenticationSlice = createSlice({
       .addCase(profile.rejected, (state, action) => {
         state.upload_status = `failed: ${action.error.message}`;
       })
-      .addCase(fetchProfilePic.fulfilled, (state, { payload }) => {
-        state.upload_status = "Profile picture fetched";
-        state.profilePic = payload; // This will now be the complete URL
-      })
-      .addCase(fetchProfilePic.rejected, (state, action) => {
-        state.upload_status = `failed: ${action.error.message}`;
-      });
+      
   },
 });
 

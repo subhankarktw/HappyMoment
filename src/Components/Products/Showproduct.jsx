@@ -34,7 +34,14 @@ export default function Showproduct() {
         {products && products.length > 0
           ? products.map((product) => (
               <Grid item xs={12} sm={6} md={4} key={product._id}>
-                <Card sx={{ bgcolor: "rgba(255, 255, 255, 0.1)", color: "#8bc34a", boxShadow: 3 }}>
+              <Card sx={{ bgcolor: "rgba(255, 255, 255, 0.1)", color: "#8bc34a", boxShadow: 3 }}>
+              <img
+                    src={`https://wtsacademy.dedicateddevelopers.us/uploads/product/${product?.image}`}
+                    height={250}
+                    width={300}
+                    alt={product.title}
+                    style={{ marginTop: '6px',borderRadius:6 }}
+                  />
                   <CardContent>
                     <Typography variant="h5" component="div">
                       <strong>Title: </strong> {product.title}

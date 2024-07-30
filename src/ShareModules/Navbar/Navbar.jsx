@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import img from "./children.png";
+import { profile_Url } from "../../Helper/Helper";
 
 const Navitems = [
   { name: "Home", route: "/" },
@@ -34,11 +35,9 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(profile());
-  }, [dispatch]);
+  
 
-  const { isLogin, profilePic } = useSelector((state) => state.authentication);
+  const { isLogin, user } = useSelector((state) => state.authentication);
   const FirstName = localStorage.getItem("first_name");
   const [isLogged, setIsLogged] = useState("");
 
@@ -62,6 +61,11 @@ export default function Navbar() {
     dispatch(logout());
     navigate("/login");
   };
+  useEffect(() => {
+    if (isLogin) {
+      dispatch(profile());
+    } 
+  }, [dispatch, isLogin]);
 
   useEffect(() => {
     setIsLogged(FirstName);
@@ -249,7 +253,7 @@ export default function Navbar() {
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
                     alt="Profile Picture"
-                    src={profilePic || "/path/to/default/profile-pic.png"} // Fallback image
+                    src={user?.profile_pic ? profile_Url(user.profile_pic) :""} // Fallback image
                     sx={{ width: 40, height: 40 }}
                   />
                 </IconButton>

@@ -69,101 +69,111 @@ export default function Register() {
   }, [mutation.isSuccess, navigate, reDirectLogin]);
 
   return (
-    <Grid
-      container
-      sx={{
-        height: "100vh",
-        justifyContent: "flex-end", // Align items to the right
-        backgroundImage: "url(images/pexels2.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+    <Grid container sx={{ height: "100vh", justifyContent: "center", backgroundImage: "url(images/pexels2.jpg)", backgroundSize: "cover", backgroundPosition: "center" }}>
+      {/* Image Container for Large Screens */}
+      <Grid item xs={false} sm={6} sx={{ display: { xs: "none", sm: "block" } }}>
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh" }}>
+          <img src="images/children.png" alt="Happy Moments" style={{ width: "300px", height: "300px" }} />
+          <Typography variant="h4" sx={{ color: "black", mt: 1 }}>Happy Moments</Typography>
+        </Box>
+      </Grid>
+
       {/* Registration Form Container */}
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          height: "100vh",
-          padding: 4,
-          backdropFilter: "blur(8px)", // Modern touch with a blur effect
-        }}
-      >
-        <Typography component="h1" variant="h4" sx={{ mt: 6, color: "black", fontWeight: "bold" }}>
-          Create an Account
+      <Grid item xs={12} sm={6} sx={{ display: "flex", flexDirection: "column", alignItems: "center", height: "100vh", padding: 4 }}>
+        <Typography component="h1" variant="h5" sx={{ mt: 6, color: "black", fontWeight: "800" }}>
+          Register
         </Typography>
-        <Box
-          component="form"
-          onSubmit={handleSubmit(onSubmit)}
-          sx={{
-            mt: 2,
-            p: 4,
-            borderRadius: 2,
-            backgroundColor: "rgba(255, 255, 255, 0.8)", // Semi-transparent background
-            boxShadow: 3,
-          }}
-        >
+        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 2, p: 4, borderRadius: 2, backgroundColor: "white", boxShadow: 3, opacity: 0.8 }}>
           <Grid container spacing={2}>
-            {["first_name", "last_name", "email", "password"].map((field, index) => (
-              <Grid item xs={12} key={index}>
-                <TextField
-                  fullWidth
-                  id={field}
-                  label={field.replace("_", " ").replace(/\b\w/g, char => char.toUpperCase())} // Capitalize labels
-                  type={field === "password" ? "password" : "text"}
-                  {...register(field, { required: `Please enter your ${field.replace("_", " ")}` })}
-                  error={Boolean(errors[field])}
-                  helperText={errors[field]?.message}
-                  InputLabelProps={{ style: { color: "black" } }}
-                  InputProps={{
-                    sx: {
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "black",
-                      },
-                      "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "black",
-                      },
-                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "black",
-                      },
-                    },
-                  }}
-                />
-              </Grid>
-            ))}
             <Grid item xs={12}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  mt: 2,
+              <TextField
+                fullWidth
+                id="first_name"
+                label="First Name"
+                {...register("first_name", { required: "Please enter first name" })}
+                error={Boolean(errors.first_name)}
+                helperText={errors.first_name?.message}
+                InputLabelProps={{ style: { color: "black" } }}
+                InputProps={{
+                  style: { color: "black" },
+                  sx: {
+                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                  },
                 }}
-              >
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                id="last_name"
+                label="Last Name"
+                {...register("last_name", { required: "Please enter last name" })}
+                error={Boolean(errors.last_name)}
+                helperText={errors.last_name?.message}
+                InputLabelProps={{ style: { color: "black" } }}
+                InputProps={{
+                  style: { color: "black" },
+                  sx: {
+                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                  },
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                id="email"
+                label="Email Address"
+                {...register("email", { required: "Please enter email address" })}
+                error={Boolean(errors.email)}
+                helperText={errors.email?.message}
+                InputLabelProps={{ style: { color: "black" } }}
+                InputProps={{
+                  style: { color: "black" },
+                  sx: {
+                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                  },
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                id="password"
+                label="Password"
+                type="password"
+                {...register("password", { required: "Please enter your password" })}
+                error={Boolean(errors.password)}
+                helperText={errors.password?.message}
+                InputLabelProps={{ style: { color: "black" } }}
+                InputProps={{
+                  style: { color: "black" },
+                  sx: {
+                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                  },
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", mt: 2 }}>
                 <input
                   accept="image/*"
                   type="file"
                   id="image"
+                  name="img"
                   onChange={handleFileChange}
                   style={{ display: "none" }}
                 />
                 <label htmlFor="image">
-                  <Button
-                    variant="contained"
-                    sx={{
-                      bgcolor: "black",
-                      color: "white",
-                      "&:hover": {
-                        bgcolor: "white",
-                        color: "black",
-                      },
-                    }}
-                    component="span"
-                  >
+                  <Button variant="contained" sx={{ bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }} component="span">
                     Upload Profile Picture
                   </Button>
                 </label>
@@ -175,43 +185,27 @@ export default function Register() {
               </Box>
             </Grid>
             <Grid item xs={12}>
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{
-                  mt: 2,
-                  mb: 2,
-                  bgcolor: "black",
-                  color: "white",
-                  "&:hover": {
-                    bgcolor: "white",
-                    color: "black",
-                  },
-                }}
-                disabled={isSubmitting}
-                fullWidth
-              >
-                Register
-              </Button>
+              <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", mt: 2 }}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{ mt: 2, mb: 2, bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
+                  disabled={isSubmitting}
+                >
+                  Register
+                </Button>
+              </Box>
             </Grid>
           </Grid>
           <Grid container justifyContent="center" alignItems="center" sx={{ mt: 2 }}>
             <Typography sx={{ mr: 1, color: "black" }}>
-              Already have an account?
+              Already registered?
             </Typography>
             <Button
               component={Link}
               to="/login"
-              variant="outlined"
-              sx={{
-                borderColor: "black",
-                color: "black",
-                "&:hover": {
-                  borderColor: "black",
-                  backgroundColor: "black",
-                  color: "white",
-                },
-              }}
+              variant="contained"
+              sx={{ bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
             >
               Login
             </Button>

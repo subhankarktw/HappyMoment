@@ -6,8 +6,6 @@ import { signin } from "../../Redux/authSlice";
 import { Box, Button, Grid, TextField, Typography, CircularProgress } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 
-const LIGHT_GREEN = "#8bc34a";
-
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -45,44 +43,53 @@ export default function Login() {
     const RedirectUser = () => {
       let token = localStorage.getItem("token");
       let isLogin = window.location.pathname.toLowerCase() === "/login";
-  
+
       if (token) {
         isLogin && navigate("/");
       }
     };
-  
+
     RedirectUser();
-  }, [reDirectHome, navigate, mutation.onSuccess]); // Removed RedirectUser from here
-  
-  
+  }, [reDirectHome, navigate]);
 
   return (
-    <>
-      <Box
+    <Grid
+      container
+      sx={{
+        height: "100vh",
+        justifyContent: "flex-end",
+        backgroundImage: "url(images/pexel.jpg)",
+        backgroundSize: "cover",
+        alignItems:"center",
+        backgroundPosition: "center",
+      }}
+    >
+      <Grid
+        item
+        xs={12}
+        sm={6}
         sx={{
           display: "flex",
+          justifyContent:"center",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
           height: "100vh",
-          backgroundColor: LIGHT_GREEN,
+          padding: 4,
+          backdropFilter: "blur(8px)",
         }}
       >
-        <Typography component="h1" variant="h5" sx={{ color: "black" }}>
+        <Typography component="h1" variant="h4" sx={{ mt: 6, color: "black", fontWeight: "bold" }}>
           Login
         </Typography>
         <Box
           component="form"
           onSubmit={handleSubmit(onSubmit)}
           sx={{
-            mt: 3,
-            ml: 4,
-            mr: 4,
+            mt: 2,
             p: 4,
             borderRadius: 2,
-            bgcolor: "black",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
             boxShadow: 3,
-            maxWidth: 400,
           }}
         >
           <Grid container spacing={2}>
@@ -97,18 +104,17 @@ export default function Login() {
                 })}
                 error={Boolean(errors.email)}
                 helperText={errors.email?.message}
-                InputLabelProps={{ style: { color: LIGHT_GREEN } }} // Label color
+                InputLabelProps={{ style: { color: "black" } }}
                 InputProps={{
-                  style: { color: LIGHT_GREEN }, // Input text color
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: LIGHT_GREEN, // Outline color
+                      borderColor: "black",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: LIGHT_GREEN, // Outline color on hover
+                      borderColor: "black",
                     },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: LIGHT_GREEN, // Outline color on focus
+                      borderColor: "black",
                     },
                   },
                 }}
@@ -126,18 +132,17 @@ export default function Login() {
                 })}
                 error={Boolean(errors.password)}
                 helperText={errors.password?.message}
-                InputLabelProps={{ style: { color: LIGHT_GREEN } }} // Label color
+                InputLabelProps={{ style: { color: "black" } }}
                 InputProps={{
-                  style: { color: LIGHT_GREEN }, // Input text color
                   sx: {
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: LIGHT_GREEN, // Outline color
+                      borderColor: "black",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: LIGHT_GREEN, // Outline color on hover
+                      borderColor: "black",
                     },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: LIGHT_GREEN, // Outline color on focus
+                      borderColor: "black",
                     },
                   },
                 }}
@@ -154,7 +159,16 @@ export default function Login() {
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{ mt: 2, mb: 2, bgcolor: LIGHT_GREEN, color: "black" }} // Button color and text color
+                  sx={{
+                    mt: 2,
+                    mb: 2,
+                    bgcolor: "black",
+                    color: "white",
+                    "&:hover": {
+                      bgcolor: "white",
+                      color: "black",
+                    },
+                  }}
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? <CircularProgress size={24} color="inherit" /> : "Login"}
@@ -168,18 +182,26 @@ export default function Login() {
             alignItems="center"
             sx={{ mt: 2 }}
           >
-            <Typography sx={{ mr: 1, color: LIGHT_GREEN }}>Not registered? Please </Typography>
+            <Typography sx={{ mr: 1, color: "black" }}>Not registered? Please </Typography>
             <Button
               component={Link}
               to="/register"
-              variant="contained"
-              sx={{ bgcolor: LIGHT_GREEN, color: "black" }} // Button color and text color
+              variant="outlined"
+              sx={{
+                borderColor: "black",
+                color: "black",
+                "&:hover": {
+                  borderColor: "black",
+                  backgroundColor: "black",
+                  color: "white",
+                },
+              }}
             >
               Register
             </Button>
           </Grid>
         </Box>
-      </Box>
-    </>
+      </Grid>
+    </Grid>
   );
 }

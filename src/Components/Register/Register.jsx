@@ -29,7 +29,7 @@ export default function Register() {
   const mutation = useMutation({
     mutationFn: async (formdata) => {
       const resultAction = await dispatch(signup(formdata));
-      return resultAction.payload; // Directly return the payload from the action
+      return resultAction.payload;
     },
     onSuccess: (data) => {
       if (data?.data?.email) {
@@ -69,20 +69,32 @@ export default function Register() {
   }, [mutation.isSuccess, navigate, reDirectLogin]);
 
   return (
-    <>
-      <Box
+    <Grid
+      container
+      sx={{
+        height: "100vh",
+        justifyContent: "flex-end", // Align items to the right
+        backgroundImage: "url(images/pexels2.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* Registration Form Container */}
+      <Grid
+        item
+        xs={12}
+        sm={6}
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
           height: "100vh",
-          backgroundColor: "#8bc34a",
-          mt: 4,
+          padding: 4,
+          backdropFilter: "blur(8px)", // Modern touch with a blur effect
         }}
       >
-        <Typography component="h1" variant="h5" sx={{ mt: 4, color: "#8bc34a" }}>
-          Register
+        <Typography component="h1" variant="h4" sx={{ mt: 6, color: "black", fontWeight: "bold" }}>
+          Create an Account
         </Typography>
         <Box
           component="form"
@@ -91,122 +103,38 @@ export default function Register() {
             mt: 2,
             p: 4,
             borderRadius: 2,
-            bgcolor: "black", // Set background color to black
+            backgroundColor: "rgba(255, 255, 255, 0.8)", // Semi-transparent background
             boxShadow: 3,
-            ml: 3,
-            mr: 3,
           }}
         >
           <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id="first_name"
-                label="First Name"
-                {...register("first_name", {
-                  required: "Please enter first name",
-                })}
-                error={Boolean(errors.first_name)}
-                helperText={errors.first_name?.message}
-                InputLabelProps={{ style: { color: "#8bc34a" } }} // Label color
-                InputProps={{
-                  style: { color: "#8bc34a" }, // Input text color
-                  sx: {
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color
+            {["first_name", "last_name", "email", "password"].map((field, index) => (
+              <Grid item xs={12} key={index}>
+                <TextField
+                  fullWidth
+                  id={field}
+                  label={field.replace("_", " ").replace(/\b\w/g, char => char.toUpperCase())} // Capitalize labels
+                  type={field === "password" ? "password" : "text"}
+                  {...register(field, { required: `Please enter your ${field.replace("_", " ")}` })}
+                  error={Boolean(errors[field])}
+                  helperText={errors[field]?.message}
+                  InputLabelProps={{ style: { color: "black" } }}
+                  InputProps={{
+                    sx: {
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "black",
+                      },
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "black",
+                      },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "black",
+                      },
                     },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color on hover
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color on focus
-                    },
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id="last_name"
-                label="Last Name"
-                {...register("last_name", {
-                  required: "Please enter last name",
-                })}
-                error={Boolean(errors.last_name)}
-                helperText={errors.last_name?.message}
-                InputLabelProps={{ style: { color: "#8bc34a" } }} // Label color
-                InputProps={{
-                  style: { color: "#8bc34a" }, // Input text color
-                  sx: {
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color on hover
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color on focus
-                    },
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id="email"
-                label="Email Address"
-                {...register("email", {
-                  required: "Please enter email address",
-                })}
-                error={Boolean(errors.email)}
-                helperText={errors.email?.message}
-                InputLabelProps={{ style: { color: "#8bc34a" } }} // Label color
-                InputProps={{
-                  style: { color: "#8bc34a" }, // Input text color
-                  sx: {
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color on hover
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color on focus
-                    },
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id="password"
-                label="Password"
-                type="password"
-                {...register("password", {
-                  required: "Please enter your password",
-                })}
-                error={Boolean(errors.password)}
-                helperText={errors.password?.message}
-                InputLabelProps={{ style: { color: "#8bc34a" } }} // Label color
-                InputProps={{
-                  style: { color: "#8bc34a" }, // Input text color
-                  sx: {
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color on hover
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Outline color on focus
-                    },
-                  },
-                }}
-              />
-            </Grid>
+                  }}
+                />
+              </Grid>
+            ))}
             <Grid item xs={12}>
               <Box
                 sx={{
@@ -220,64 +148,76 @@ export default function Register() {
                   accept="image/*"
                   type="file"
                   id="image"
-                  name="img"
                   onChange={handleFileChange}
-                  style={{
-                    display: "none",
-                  }}
+                  style={{ display: "none" }}
                 />
                 <label htmlFor="image">
-                  <Button variant="contained" sx={{ bgcolor: "#8bc34a", color: "black" }} component="span">
+                  <Button
+                    variant="contained"
+                    sx={{
+                      bgcolor: "black",
+                      color: "white",
+                      "&:hover": {
+                        bgcolor: "white",
+                        color: "black",
+                      },
+                    }}
+                    component="span"
+                  >
                     Upload Profile Picture
                   </Button>
                 </label>
                 {imgName && (
-                  <Typography variant="body2" sx={{ ml: 2, color: "#8bc34a" }}>
+                  <Typography variant="body2" sx={{ ml: 2, color: "black" }}>
                     {imgName}
                   </Typography>
                 )}
               </Box>
             </Grid>
             <Grid item xs={12}>
-              <Box
+              <Button
+                type="submit"
+                variant="contained"
                 sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
                   mt: 2,
+                  mb: 2,
+                  bgcolor: "black",
+                  color: "white",
+                  "&:hover": {
+                    bgcolor: "white",
+                    color: "black",
+                  },
                 }}
+                disabled={isSubmitting}
+                fullWidth
               >
-                <Button
-                  type="submit"
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2, bgcolor: "#8bc34a", color: "black" }} // Button color and text color
-                  disabled={isSubmitting}
-                >
-                  Register
-                </Button>
-              </Box>
+                Register
+              </Button>
             </Grid>
           </Grid>
-          <Grid
-            container
-            justifyContent="center"
-            alignItems="center"
-            sx={{ mt: 2 }}
-          >
-            <Typography sx={{ mr: 1, color: "#8bc34a" }}>
-              Already registered?
+          <Grid container justifyContent="center" alignItems="center" sx={{ mt: 2 }}>
+            <Typography sx={{ mr: 1, color: "black" }}>
+              Already have an account?
             </Typography>
             <Button
               component={Link}
               to="/login"
-              variant="contained"
-              sx={{ bgcolor: "#8bc34a", color: "black" }} // Button color and text color
+              variant="outlined"
+              sx={{
+                borderColor: "black",
+                color: "black",
+                "&:hover": {
+                  borderColor: "black",
+                  backgroundColor: "black",
+                  color: "white",
+                },
+              }}
             >
               Login
             </Button>
           </Grid>
         </Box>
-      </Box>
-    </>
+      </Grid>
+    </Grid>
   );
 }

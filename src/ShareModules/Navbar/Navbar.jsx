@@ -15,7 +15,6 @@ import {
   Avatar,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Import arrow icon
 import img from "./children.png";
 
 const Navitems = [
@@ -31,7 +30,6 @@ const Posts = [
 
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElProduct, setAnchorElProduct] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -52,14 +50,6 @@ export default function Navbar() {
     setAnchorElNav(null);
   };
 
-  const handleOpenProductMenu = (event) => {
-    setAnchorElProduct(event.currentTarget);
-  };
-
-  const handleCloseProductMenu = () => {
-    setAnchorElProduct(null);
-  };
-
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -78,7 +68,7 @@ export default function Navbar() {
   }, [FirstName]);
 
   return (
-    <AppBar position="fixed" sx={{ bgcolor: "black", color: "#8bc34a" }}>
+    <AppBar position="fixed" sx={{ bgcolor: "white", color: "black" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box
@@ -173,16 +163,16 @@ export default function Navbar() {
                 <Link
                   key={item.route}
                   to={item.route}
-                  style={{ textDecoration: "none", color: "#8bc34a" }}
+                  style={{ textDecoration: "none", color: "white" }}
                 >
                   <MenuItem
                     onClick={handleCloseNavMenu}
                     sx={{
-                      bgcolor: "black",
-                      color: "#8bc34a",
+                      bgcolor: "white",
+                      color: "black",
                       "&:hover": {
-                        bgcolor: "black",
-                        color: "#8bc34a",
+                        bgcolor: "white",
+                        color: "black",
                       },
                     }}
                   >
@@ -191,54 +181,23 @@ export default function Navbar() {
                 </Link>
               ))}
               {isLogin && (
-                <Box>
-                  <Button
-                    aria-controls="product-menu"
-                    aria-haspopup="true"
-                    onClick={handleOpenProductMenu}
-                    sx={{ color: "#8bc34a", display: "block", width: "100%" }}
+              <>
+                {Posts.map((post) => (
+                  <Link
+                    key={post.route}
+                    to={post.route}
+                    style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    Post <ArrowDropDownIcon /> {/* Add arrow icon */}
-                  </Button>
-                  <Menu
-                    id="product-menu"
-                    anchorEl={anchorElProduct}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    open={Boolean(anchorElProduct)}
-                    onClose={handleCloseProductMenu}
-                  >
-                    {Posts.map((item) => (
-                      <MenuItem
-                        key={item.route}
-                        onClick={handleCloseProductMenu}
-                        sx={{
-                          bgcolor: "black",
-                          color: "#8bc34a",
-                          "&:hover": {
-                            bgcolor: "black",
-                            color: "#8bc34a",
-                          },
-                        }}
-                      >
-                        <Link
-                          to={item.route}
-                          style={{ textDecoration: "none", color: "#8bc34a" }}
-                        >
-                          {item.name}
-                        </Link>
-                      </MenuItem>
-                    ))}
-                  </Menu>
-                </Box>
-              )}
+                    <Button
+                      onClick={handleCloseNavMenu}
+                      sx={{ my: 2, color: "black", display: "block" }}
+                    >
+                      {post.name}
+                    </Button>
+                  </Link>
+                ))}
+              </>
+            )}
             </Menu>
           </Box>
 
@@ -258,21 +217,29 @@ export default function Navbar() {
                 <Button
                   key={item.route}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "#8bc34a", display: "block" }}
+                  sx={{ my: 2, color: "black", display: "block" }}
                 >
                   {item.name}
                 </Button>
               </Link>
             ))}
             {isLogin && (
-              <Button
-                aria-controls="product-menu"
-                aria-haspopup="true"
-                onClick={handleOpenProductMenu}
-                sx={{ color: "#8bc34a" }}
-              >
-                Posts <ArrowDropDownIcon /> {/* Add arrow icon */}
-              </Button>
+              <>
+                {Posts.map((post) => (
+                  <Link
+                    key={post.route}
+                    to={post.route}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <Button
+                      onClick={handleCloseNavMenu}
+                      sx={{ my: 2, color: "black", display: "block" }}
+                    >
+                      {post.name}
+                    </Button>
+                  </Link>
+                ))}
+              </>
             )}
           </Box>
 
@@ -302,15 +269,15 @@ export default function Navbar() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  <MenuItem onClick={handleCloseUserMenu} sx={{ bgcolor: "black", color: "#8bc34a" }}>
+                  <MenuItem onClick={handleCloseUserMenu} sx={{ bgcolor: "white", color: "black" }}>
                     <Link
                       to="/profile"
-                      style={{ textDecoration: "none", color: "#8bc34a" }}
+                      style={{ textDecoration: "none", color: "black" }}
                     >
                       {isLogged}
                     </Link>
                   </MenuItem>
-                  <MenuItem onClick={handleLogout} sx={{ bgcolor: "black", color: "#8bc34a" }}>
+                  <MenuItem onClick={handleLogout} sx={{ bgcolor: "white", color: "black" }}>
                     <Typography textAlign="center">Logout</Typography>
                   </MenuItem>
                 </Menu>
@@ -318,9 +285,9 @@ export default function Navbar() {
             ) : (
               <Link
                 to="/login"
-                style={{ textDecoration: "none", color: "inherit" }}
+                style={{ textDecoration: "none", color: "black" }}
               >
-                <Button sx={{ color: "#8bc34a" }}>Login</Button>
+                <Button sx={{ color: "black" }}>Login</Button>
               </Link>
             )}
           </Box>

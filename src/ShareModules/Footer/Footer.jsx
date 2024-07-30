@@ -11,7 +11,7 @@ const Footer = () => {
       component="footer"
       sx={{
         backgroundColor: "#000",
-        color: "#8bc34a",
+        color: "white",
         py: 3,
         px: 2,
       }}
@@ -42,7 +42,7 @@ const Footer = () => {
           <Typography variant="body1" gutterBottom>
             <a
               href="https://subhankarsinhaportfolio.netlify.app/"
-              style={{ textDecoration: 'none', color: '#8bc34a' }} 
+              style={{ textDecoration: 'none', color: 'white' }} 
               target="_blank" 
               rel="noopener noreferrer" 
             >

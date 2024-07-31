@@ -32,6 +32,11 @@ export const updateProduct = createAsyncThunk(
     return res?.data;
   }
 );
+
+export const removepost = createAsyncThunk("removepost", async (id) => {
+  let res = await axiosInstance.post("/api/product/remove", {id});
+  return res?.data;
+});
 const curdoperationSlice = createSlice({
   name: "products",
   initialState,
@@ -50,7 +55,6 @@ const curdoperationSlice = createSlice({
       .addCase(addProduct.fulfilled, (state, { payload }) => {
         state.upload_status = "Product added successfully";
         state.isAdded = true;
-        
       })
       .addCase(addProduct.rejected, (state) => {
         state.upload_status = "failed";
@@ -84,6 +88,15 @@ const curdoperationSlice = createSlice({
       })
       .addCase(updateProduct.rejected, (state) => {
         state.upload_status = "Failed";
+      })
+      .addCase(removepost.pending, (state) => {
+        state.upload_status = "Loading";
+      })
+      .addCase(removepost.fulfilled, (state) => {
+        state.upload_status = "Deleted";
+      })
+      .addCase(removepost.rejected, (state) => {
+        state.upload_status = "failed";
       });
   },
 });

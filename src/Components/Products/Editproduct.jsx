@@ -102,8 +102,8 @@ export default function Editproduct() {
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
-        bgcolor: "black", // Set background color to black
-        color: "#8bc34a", // Set text color to light green
+        bgcolor: "white", // Set background color to black
+        color: "black", // Set text color to light green
       }}
     >
       <Typography component="h1" variant="h5" sx={{ mt: 4 }}>
@@ -117,7 +117,7 @@ export default function Editproduct() {
           p: 4,
           borderRadius: 2,
           bgcolor: "rgba(255, 255, 255, 0.1)", // Set form background to a darker white
-          boxShadow: 3,
+          boxShadow: 5,
           
           maxWidth: 400,
         }}
@@ -138,23 +138,23 @@ export default function Editproduct() {
                 helperText={error.title}
                 InputLabelProps={{
                   sx: {
-                    color: "#8bc34a", // Set label color to light green
+                    color: "black", // Set label color to light green
                     "&.Mui-focused": {
-                      color: "#8bc34a", // Set label color when focused to light green
+                      color: "black", // Set label color when focused to light green
                     },
                   },
                 }}
                 InputProps={{
                   sx: {
-                    color: "#8bc34a", // Set input text color to light green
+                    color: "black", // Set input text color to light green
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Set input border color to light green
+                      borderColor: "black", // Set input border color to light green
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Set input border color on hover to light green
+                      borderColor: "black", // Set input border color on hover to light green
                     },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Set input border color when focused to light green
+                      borderColor: "black", // Set input border color when focused to light green
                     },
                   },
                 }}
@@ -174,23 +174,23 @@ export default function Editproduct() {
                 helperText={error.description}
                 InputLabelProps={{
                   sx: {
-                    color: "#8bc34a", // Set label color to light green
+                    color: "black", // Set label color to light green
                     "&.Mui-focused": {
-                      color: "#8bc34a", // Set label color when focused to light green
+                      color: "black", // Set label color when focused to light green
                     },
                   },
                 }}
                 InputProps={{
                   sx: {
-                    color: "#8bc34a", // Set input text color to light green
+                    color: "black", // Set input text color to light green
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Set input border color to light green
+                      borderColor: "black", // Set input border color to light green
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Set input border color on hover to light green
+                      borderColor: "black", // Set input border color on hover to light green
                     },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#8bc34a", // Set input border color when focused to light green
+                      borderColor: "black", // Set input border color when focused to light green
                     },
                   },
                 }}
@@ -208,7 +208,7 @@ export default function Editproduct() {
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{ bgcolor: "#8bc34a", color: "black" }} // Set button color
+                  sx={{ bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
                   disabled={loading} // Disable button while loading
                 >
                   Update Post

@@ -25,8 +25,7 @@ const Navitems = [
 ];
 
 const Posts = [
-  { name: "Add Post", route: "/addpost" },
-  { name: "Show Post", route: "/showpost" },
+  { name: "Posts", route: "/showpost" },
 ];
 
 export default function Navbar() {
@@ -194,7 +193,7 @@ export default function Navbar() {
                   >
                     <Button
                       onClick={handleCloseNavMenu}
-                      sx={{ my: 2, color: "black", display: "block" }}
+                      sx={{ color: "black", }}
                     >
                       {post.name}
                     </Button>

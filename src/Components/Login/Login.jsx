@@ -87,13 +87,10 @@ export default function Login() {
           }}
         >
           <img
-            src="images/children.png"
+            src="images/3d.png"
             alt="Happy Moments"
-            style={{ width: "300px", height: "300px" }}
+            style={{ width: "400px", height: "400px" }}
           />
-          <Typography variant="h4" sx={{ color: "black", mt: 1 }}>
-            Happy Moments
-          </Typography>
         </Box>
       </Grid>
 
@@ -109,13 +106,17 @@ export default function Login() {
           alignItems: "center",
           height: "100vh",
           padding: 4,
-          backdropFilter: "blur(8px)",
         }}
       >
         <Typography
           component="h1"
           variant="h4"
-          sx={{ mt: 6, color: "black", fontWeight: "bold" }}
+          sx={{
+            mt: 6,
+            fontFamily: "monospace",
+            color: "black",
+            fontWeight: "bold",
+          }}
         >
           Login
         </Typography>
@@ -145,6 +146,7 @@ export default function Login() {
                 InputLabelProps={{ style: { color: "black" } }}
                 InputProps={{
                   sx: {
+                    fontFamily: "monospace",
                     "& .MuiOutlinedInput-notchedOutline": {
                       borderColor: "black",
                     },
@@ -173,6 +175,7 @@ export default function Login() {
                 InputLabelProps={{ style: { color: "black" } }}
                 InputProps={{
                   sx: {
+                    fontFamily: "monospace",
                     "& .MuiOutlinedInput-notchedOutline": {
                       borderColor: "black",
                     },
@@ -198,6 +201,7 @@ export default function Login() {
                   type="submit"
                   variant="contained"
                   sx={{
+                    fontFamily: "monospace",
                     mt: 2,
                     mb: 2,
                     bgcolor: "black",
@@ -224,7 +228,7 @@ export default function Login() {
             alignItems="center"
             sx={{ mt: 2 }}
           >
-            <Typography sx={{ mr: 1, color: "black" }}>
+            <Typography sx={{ fontFamily: "monospace", mr: 1, color: "black" }}>
               Not registered? Please{" "}
             </Typography>
             <Button
@@ -232,6 +236,7 @@ export default function Login() {
               to="/register"
               variant="outlined"
               sx={{
+                fontFamily: "monospace",
                 borderColor: "black",
                 color: "black",
                 "&:hover": {

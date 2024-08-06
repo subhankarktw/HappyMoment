@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct, removepost } from "../../Redux/curdSlice";
 import { Link } from "react-router-dom";
+import "../Products/showproduct.css";
 
 export default function ShowProduct() {
   const dispatch = useDispatch();
@@ -43,7 +44,6 @@ export default function ShowProduct() {
     setIsDelete(false);
   };
 
-  // Filter products based on search term
   const filteredProducts = products.filter(
     (product) =>
       product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -51,42 +51,19 @@ export default function ShowProduct() {
   );
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        minHeight: "100vh",
-        bgcolor: "white",
-        color: "black",
-        mt: 5,
-        p: 2, // Add padding for better spacing on smaller screens
-      }}
-    >
-      <Typography component="h1" variant="h4" sx={{ mb: 2, mt: 6 }}>
+    <Box className="body">
+      <Typography component="h1" variant="h4" className="title">
         Posts
       </Typography>
 
-      {/* Container for Search Box and Button */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" }, // Stack on smaller screens
-          justifyContent: "space-between",
-          width: "100%",
-          mb: 3,
-        }}
-      >
+      <Box className="search-container">
         <TextField
           variant="outlined"
           placeholder="Search..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-box"
           sx={{
-            flexGrow: 1,
-            m: 1,
-            color: "black",
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: "black",
             },
@@ -103,13 +80,7 @@ export default function ShowProduct() {
         />
         <Button
           variant="contained"
-          sx={{
-            bgcolor: "green",
-            color: "white",
-            flexGrow: 0.1,
-            m: 1,
-            width: { xs: "auto", sm: "auto" }, // Full width on small screens
-          }}
+          className="add-post-button"
           component={Link}
           to="/addpost"
         >
@@ -121,26 +92,13 @@ export default function ShowProduct() {
         {filteredProducts && filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <Grid item xs={12} sm={6} md={4} key={product._id}>
-              <Card
-                sx={{
-                  bgcolor: "white",
-                  color: "black",
-                  boxShadow: 3,
-                  margin: "16px", 
-                  
-                }}
-              >
+              <Card className="card">
                 <img
                   src={`https://wtsacademy.dedicateddevelopers.us/uploads/product/${product?.image}`}
                   alt={product.title}
-                  style={{
-                    width: "100%",
-                    height: "200px",
-                    objectFit: "cover",
-                    borderRadius: 6,
-                  }}
+                  className="card-image"
                 />
-                <CardContent sx={{ flexGrow: 1 }}>
+                <CardContent>
                   <Typography variant="h5" component="div">
                     <strong>Title: </strong> {product.title}
                   </Typography>
@@ -151,7 +109,7 @@ export default function ShowProduct() {
                 <Box display="flex" justifyContent="space-between" p={2}>
                   <Button
                     variant="contained"
-                    sx={{ bgcolor: "white", color: "black" }}
+                    className="edit-button"
                     component={Link}
                     to={`/detail/${product._id}`}
                   >
@@ -159,7 +117,7 @@ export default function ShowProduct() {
                   </Button>
                   <Button
                     variant="contained"
-                    sx={{ bgcolor: "#f44336", color: "white" }}
+                    className="delete-button"
                     onClick={() => handleDelete(product._id)}
                   >
                     Delete
@@ -173,34 +131,16 @@ export default function ShowProduct() {
         )}
       </Grid>
 
-      {/* Confirmation Dialog */}
       {isDelete && (
-        <Box
-          sx={{
-            position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            bgcolor: "white",
-            color: "black",
-            p: 4,
-            boxShadow: 3,
-            zIndex: 999,
-            width: { xs: "80%", sm: "400px" }, // Responsive width
-          }}
-        >
+        <Box className="confirmation-dialog">
           <Typography variant="h6">
             Are you sure you want to delete this product?
           </Typography>
-          <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
+          <Box className="dialog-buttons">
             <Button
               variant="contained"
+              className="confirm-button"
               onClick={confirmDelete}
-              sx={{
-                bgcolor: "white",
-                color: "black",
-                "&:hover": { bgcolor: "black", color: "white" },
-              }}
             >
               Yes
             </Button>

@@ -14,6 +14,7 @@ import {
   restAddedState,
   updateProduct,
 } from "../../Redux/curdSlice";
+import { useForm } from "react-hook-form";
 
 export default function Editproduct() {
   const { id } = useParams();
@@ -26,65 +27,32 @@ export default function Editproduct() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [post, setPost] = useState({
-    title: "",
-    description: "",
-  });
-  const [error, setError] = useState({});
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm();
   const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     dispatch(editProduct(id)); // Fetch product data when the component mounts
   }, [id, dispatch]);
 
-  const validation = () => {
-    let errors = {};
-    if (!post.title) {
-      errors.title = "Please enter Title";
-    }
-    if (!post.description) {
-      errors.description = "Please enter description";
-    }
-    return errors;
-  };
-
-  const postuserdata = (e) => {
-    const { name, value } = e.target;
-    setPost((prev) => ({ ...prev, [name]: value }));
-    setError((prev) => ({
-      ...prev,
-      [name]: value.length === 0 ? `Please enter ${name}` : "",
-    }));
-  };
-
   useEffect(() => {
     if (editProducts.data && editProducts.data.title && editProducts.data.description) {
-      setPost({
-        title: editProducts.data.title,
-        description: editProducts.data.description,
-      });
+      setValue("title", editProducts.data.title);
+      setValue("description", editProducts.data.description);
     } else {
       console.log(
         "Edit products data is not available or structured incorrectly:",
         editProducts
       );
     }
-  }, [editProducts]);
+  }, [editProducts, setValue]);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const errors = validation();
-    setError(errors);
-
-    if (Object.keys(errors).length === 0) {
-      const data = {
-        title: post.title,
-        description: post.description,
-        id: id,
-      };
-      dispatch(updateProduct(data));
-      setSuccessMessage("Product updated successfully!"); // Set success message
-    }
+  const onSubmit = (data) => {
+    const updatedData = {
+      ...data,
+      id: id,
+    };
+    dispatch(updateProduct(updatedData));
+    setSuccessMessage("Product updated successfully!"); // Set success message
   };
 
   useEffect(() => {
@@ -102,8 +70,8 @@ export default function Editproduct() {
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
-        bgcolor: "white", // Set background color to black
-        color: "black", // Set text color to light green
+        bgcolor: "white", // Set background color to white
+        color: "black", // Set text color to black
       }}
     >
       <Typography component="h1" variant="h5" sx={{ mt: 4 }}>
@@ -111,14 +79,13 @@ export default function Editproduct() {
       </Typography>
       <Box
         component="form"
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit(onSubmit)} // Use handleSubmit from useForm
         sx={{
           m: 2,
           p: 4,
           borderRadius: 2,
           bgcolor: "rgba(255, 255, 255, 0.1)", // Set form background to a darker white
           boxShadow: 5,
-          
           maxWidth: 400,
         }}
       >
@@ -131,30 +98,28 @@ export default function Editproduct() {
                 fullWidth
                 id="title"
                 label="Title"
-                name="title"
-                value={post.title} // Should reflect the current state
-                onChange={postuserdata}
-                error={!!error.title}
-                helperText={error.title}
+                {...register("title", { required: "Please enter Title" })}
+                error={!!errors.title}
+                helperText={errors.title?.message}
                 InputLabelProps={{
                   sx: {
-                    color: "black", // Set label color to light green
+                    color: "black",
                     "&.Mui-focused": {
-                      color: "black", // Set label color when focused to light green
+                      color: "black",
                     },
                   },
                 }}
                 InputProps={{
                   sx: {
-                    color: "black", // Set input text color to light green
+                    color: "black",
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black", // Set input border color to light green
+                      borderColor: "black",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black", // Set input border color on hover to light green
+                      borderColor: "black",
                     },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black", // Set input border color when focused to light green
+                      borderColor: "black",
                     },
                   },
                 }}
@@ -162,35 +127,33 @@ export default function Editproduct() {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                  fullWidth
-                  multiline
-                  rows={4}
+                fullWidth
+                multiline
+                rows={4}
                 id="description"
                 label="Description"
-                name="description"
-                value={post.description} // Should reflect the current state
-                onChange={postuserdata}
-                error={!!error.description}
-                helperText={error.description}
+                {...register("description", { required: "Please enter description" })}
+                error={!!errors.description}
+                helperText={errors.description?.message}
                 InputLabelProps={{
                   sx: {
-                    color: "black", // Set label color to light green
+                    color: "black",
                     "&.Mui-focused": {
-                      color: "black", // Set label color when focused to light green
+                      color: "black",
                     },
                   },
                 }}
                 InputProps={{
                   sx: {
-                    color: "black", // Set input text color to light green
+                    color: "black",
                     "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black", // Set input border color to light green
+                      borderColor: "black",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black", // Set input border color on hover to light green
+                      borderColor: "black",
                     },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black", // Set input border color when focused to light green
+                      borderColor: "black",
                     },
                   },
                 }}

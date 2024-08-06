@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct, removepost } from "../../Redux/curdSlice";
 import { Link } from "react-router-dom";
 
-export default function Showproduct() {
+export default function ShowProduct() {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.productauthentication);
   const [delete_id, setDelete_id] = useState(null);
@@ -61,6 +61,7 @@ export default function Showproduct() {
         bgcolor: "white",
         color: "black",
         mt: 5,
+        p: 2, // Add padding for better spacing on smaller screens
       }}
     >
       <Typography component="h1" variant="h4" sx={{ mb: 2, mt: 6 }}>
@@ -71,9 +72,9 @@ export default function Showproduct() {
       <Box
         sx={{
           display: "flex",
+          flexDirection: { xs: "column", sm: "row" }, // Stack on smaller screens
           justifyContent: "space-between",
           width: "100%",
-          px: 2,
           mb: 3,
         }}
       >
@@ -102,15 +103,21 @@ export default function Showproduct() {
         />
         <Button
           variant="contained"
-          sx={{ bgcolor: "green", color: "white", flexGrow: 0.1, m:1 }}
+          sx={{
+            bgcolor: "green",
+            color: "white",
+            flexGrow: 0.1,
+            m: 1,
+            width: { xs: "auto", sm: "auto" }, // Full width on small screens
+          }}
           component={Link}
           to="/addpost"
         >
-          + Add Post
+          Add Post
         </Button>
       </Box>
 
-      <Grid container spacing={3} sx={{ px: 2, m: 0 }}>
+      <Grid container spacing={3} sx={{ m: 0 }}>
         {filteredProducts && filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <Grid item xs={12} sm={6} md={4} key={product._id}>
@@ -119,7 +126,8 @@ export default function Showproduct() {
                   bgcolor: "white",
                   color: "black",
                   boxShadow: 3,
-                  margin: 2,
+                  margin: "16px", 
+                  
                 }}
               >
                 <img
@@ -132,7 +140,7 @@ export default function Showproduct() {
                     borderRadius: 6,
                   }}
                 />
-                <CardContent>
+                <CardContent sx={{ flexGrow: 1 }}>
                   <Typography variant="h5" component="div">
                     <strong>Title: </strong> {product.title}
                   </Typography>
@@ -178,6 +186,7 @@ export default function Showproduct() {
             p: 4,
             boxShadow: 3,
             zIndex: 999,
+            width: { xs: "80%", sm: "400px" }, // Responsive width
           }}
         >
           <Typography variant="h6">
@@ -187,7 +196,11 @@ export default function Showproduct() {
             <Button
               variant="contained"
               onClick={confirmDelete}
-              sx={{ bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
+              sx={{
+                bgcolor: "white",
+                color: "black",
+                "&:hover": { bgcolor: "black", color: "white" },
+              }}
             >
               Yes
             </Button>

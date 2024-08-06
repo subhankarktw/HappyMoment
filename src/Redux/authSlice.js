@@ -41,6 +41,7 @@ const authenticationSlice = createSlice({
       state.user = null;
       localStorage.removeItem("token");
       localStorage.removeItem("first_name");
+      localStorage.removeItem("email")
     },
     check_token: (state) => {
       const token = localStorage.getItem("token");

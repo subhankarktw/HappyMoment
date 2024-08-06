@@ -1,16 +1,17 @@
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addProduct, restAddedState } from "../../Redux/curdSlice";
 
-export default function Addproduct() {
+export default function AddProduct() {
   const navigate = useNavigate();
   const [img, setImg] = useState(null);
   const [imgName, setImgName] = useState("");
   const dispatch = useDispatch();
   const { isAdded } = useSelector((state) => state.productauthentication);
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const {
     register,
@@ -32,15 +33,18 @@ export default function Addproduct() {
     }
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const formdata = new FormData();
     formdata.append("title", data.title);
     formdata.append("description", data.description);
     formdata.append("image", img);
-    dispatch(addProduct(formdata));
+
+    setLoading(true); // Set loading to true before dispatching
+    await dispatch(addProduct(formdata));
     reset();
     setImg(null);
     setImgName("");
+    setLoading(false); // Set loading to false after dispatching
   };
 
   useEffect(() => {
@@ -61,7 +65,7 @@ export default function Addproduct() {
         color: "black",
         backgroundImage: "url(images/pexels2.jpg)",
         backgroundSize: "cover",
-        backgroundPosition: "center"
+        backgroundPosition: "center",
       }}
     >
       <Typography 
@@ -206,9 +210,9 @@ export default function Addproduct() {
                 type="submit"
                 variant="contained"
                 sx={{ bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
-                disabled={isSubmitting}
+                disabled={isSubmitting || loading} 
               >
-                Upload Post
+                {loading ? <CircularProgress size={24} color="inherit" /> : "Upload Post"}
               </Button>
             </Box>
           </Grid>

@@ -16,7 +16,7 @@ export default function Home() {
         color: "black",fontFamily: "monospace",
       }}
     >
-      {/* First Division: Blog Introduction */}
+     
       <Box
         sx={{
           width: "80%",
@@ -29,7 +29,7 @@ export default function Home() {
         }}
       >
         <img
-          src="images/home1.jpg" // Replace with your image path
+          src="images/home1.jpg" 
           alt="Blog Introduction"
           style={{
             width: "100%",
@@ -46,7 +46,7 @@ export default function Home() {
         </Typography>
       </Box>
 
-      {/* Second Division: Share Your Happy Moment */}
+      
       <Box
         sx={{
           width: "80%",
@@ -58,7 +58,7 @@ export default function Home() {
         }}
       >
         <img
-          src="images/home2.jpg" // Replace with your image path
+          src="images/home2.jpg" 
           alt="Share Your Happy Moments"
           style={{
             width: "100%",
@@ -73,7 +73,7 @@ export default function Home() {
         </Typography>
       </Box>
 
-      {/* Third Division: Daily Inspiration */}
+    
       <Box
         sx={{
           width: "80%",
@@ -85,7 +85,7 @@ export default function Home() {
         }}
       >
         <img
-          src="images/home3.jpg" // Replace with your image path
+          src="images/home3.jpg" 
           alt="Daily Inspiration"
           style={{
             width: "100%",

@@ -7,7 +7,7 @@ import {
   CircularProgress,
   Grid,
 } from "@mui/material";
-import { profile } from "../../Redux/authSlice"; // Ensure correct import path
+import { profile } from "../../Redux/authSlice"; 
 import { profile_Url } from "../../Helper/Helper";
 
 export default function Profile() {
@@ -22,7 +22,7 @@ export default function Profile() {
     dispatch(profile());
   }, [dispatch]);
   const profilePicUrl = profile_Url(user.profile_pic);
-  // Loading state
+  
   if (upload_status === "loading") {
     return (
       <Box
@@ -81,21 +81,21 @@ export default function Profile() {
           InputProps={{
             readOnly: true,
             sx: {
-              color: "black", // Set input text color to black
+              color: "black", 
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color to black
+                borderColor: "black", 
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color on hover to black
+                borderColor: "black", 
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color when focused to black
+                borderColor: "black", 
               },
             },
           }}
           InputLabelProps={{
             sx: {
-              color: "black", // Set label color to black
+              color: "black", 
             },
           }}
         />
@@ -108,21 +108,21 @@ export default function Profile() {
           InputProps={{
             readOnly: true,
             sx: {
-              color: "black", // Set input text color to black
+              color: "black", 
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color to black
+                borderColor: "black", 
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color on hover to black
+                borderColor: "black", 
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color when focused to black
+                borderColor: "black", 
               },
             },
           }}
           InputLabelProps={{
             sx: {
-              color: "black", // Set label color to black
+              color: "black", 
             },
           }}
         />
@@ -135,21 +135,21 @@ export default function Profile() {
           InputProps={{
             readOnly: true,
             sx: {
-              color: "black", // Set input text color to black
+              color: "black",
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color to black
+                borderColor: "black", 
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color on hover to black
+                borderColor: "black", 
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color when focused to black
+                borderColor: "black", 
               },
             },
           }}
           InputLabelProps={{
             sx: {
-              color: "black", // Set label color to black
+              color: "black", 
             },
           }}
         />

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../../Redux/authSlice"; // Ensure this import path is correct
+import { signup } from "../../Redux/authSlice"; 
 import { Box, Button, Grid, TextField, Typography, CircularProgress } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { unwrapResult } from '@reduxjs/toolkit'; // Import unwrapResult to handle async action results
+import { unwrapResult } from '@reduxjs/toolkit'; 
 
 export default function Register() {
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ export default function Register() {
   const [imgName, setImageName] = useState("");
   const dispatch = useDispatch();
   const { reDirectLogin } = useSelector((state) => state.authentication);
-  const [errorMessage, setErrorMessage] = useState(""); // Add error message state
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [errorMessage, setErrorMessage] = useState(""); 
+  const [loading, setLoading] = useState(false); 
 
   const {
     register,
@@ -44,18 +44,18 @@ export default function Register() {
     formdata.append("password", data.password);
     formdata.append("profile_pic", img);
 
-    setLoading(true); // Set loading to true before the API call
+    setLoading(true); 
 
     try {
       const resultAction = await dispatch(signup(formdata));
-      const result = unwrapResult(resultAction); // Unwrap the result to get the payload
+      const result = unwrapResult(resultAction); 
       localStorage.setItem("email", result.data.email);
       navigate("/login");
     } catch (error) {
       console.error("Signup failed", error);
-      setErrorMessage("Signup failed. Please check your input and try again."); // Set error message
+      setErrorMessage("Signup failed. Please check your input and try again."); 
     } finally {
-      setLoading(false); // Set loading to false after the API call is done
+      setLoading(false); 
     }
   };
 
@@ -194,7 +194,7 @@ export default function Register() {
                   type="submit"
                   variant="contained"
                   sx={{ fontFamily: "monospace", mt: 2, mb: 2, bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
-                  disabled={isSubmitting || loading} // Disable button while submitting
+                  disabled={isSubmitting || loading} 
                 >
                   {loading ? <CircularProgress size={24} color="inherit" /> : "Register"}
                 </Button>

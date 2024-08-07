@@ -11,7 +11,7 @@ export default function AddProduct() {
   const [imgName, setImgName] = useState("");
   const dispatch = useDispatch();
   const { isAdded } = useSelector((state) => state.productauthentication);
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false); 
 
   const {
     register,
@@ -39,12 +39,12 @@ export default function AddProduct() {
     formdata.append("description", data.description);
     formdata.append("image", img);
 
-    setLoading(true); // Set loading to true before dispatching
+    setLoading(true); 
     await dispatch(addProduct(formdata));
     reset();
     setImg(null);
     setImgName("");
-    setLoading(false); // Set loading to false after dispatching
+    setLoading(false); 
   };
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export default function AddProduct() {
           mt: 4, 
           color: "white", 
           fontWeight: "800", 
-          textShadow: "2px 2px 4px rgba(0, 0, 0, 0.9)" // Added text shadow here
+          textShadow: "2px 2px 4px rgba(0, 0, 0, 0.9)" 
         }}
       >
         Add Post

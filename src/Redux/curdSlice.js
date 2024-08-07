@@ -21,7 +21,7 @@ export const addProduct = createAsyncThunk("addProduct", async (formdata) => {
 });
 export const editProduct = createAsyncThunk("editProduct", async (id) => {
   const res = await axiosInstance.get(`/api/product/detail/${id}`);
-  console.log("Fetched product data:", res.data); // Log fetched data
+  console.log("Fetched product data:", res.data); 
   return res.data;
 });
 
@@ -43,7 +43,6 @@ const curdoperationSlice = createSlice({
   reducers: {
     restAddedState: (state) => {
       state.isAdded = false;
-      // state.redirectProduct = null;
       state.isUpdate = false;
     },
   },

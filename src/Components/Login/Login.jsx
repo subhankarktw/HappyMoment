@@ -35,7 +35,7 @@ export default function Login() {
     },
     onSuccess: (data) => {
       localStorage.setItem("token", data.token);
-      navigate("/"); // Redirect after successful login
+      navigate("/"); 
     },
     onError: (error) => {
       console.error("Login failed", error);
@@ -70,7 +70,7 @@ export default function Login() {
         backgroundPosition: "center",
       }}
     >
-      {/* Image Container for Large Screens */}
+      
       <Grid
         item
         xs={false}
@@ -94,7 +94,7 @@ export default function Login() {
         </Box>
       </Grid>
 
-      {/* Login Form Container */}
+    
       <Grid
         item
         xs={12}

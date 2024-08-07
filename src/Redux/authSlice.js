@@ -27,7 +27,7 @@ export const signin = createAsyncThunk("user/signin", async (formdata) => {
 
 export const profile = createAsyncThunk("user/profile-details", async () => {
   const res = await axiosInstance.get("/api/user/profile-details");
-  return res.data; // Ensure this matches the expected structure
+  return res.data; 
 });
 
 
@@ -80,7 +80,7 @@ const authenticationSlice = createSlice({
       })
       .addCase(profile.fulfilled, (state, { payload }) => {
         state.upload_status = "Profile view";
-        state.user = payload.data; // Ensure this matches the structure of your API response
+        state.user = payload.data; 
       })
       .addCase(profile.rejected, (state, action) => {
         state.upload_status = `failed: ${action.error.message}`;

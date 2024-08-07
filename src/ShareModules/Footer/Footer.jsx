@@ -38,7 +38,7 @@ const Footer = () => {
           <Typography variant="body1" gutterBottom>
             Phone: +91 7585957009
           </Typography>
-          {/* Portfolio Link with Icon */}
+          
           <Typography variant="body1" gutterBottom>
             <a
               href="https://subhankarsinhaportfolio.netlify.app/"
@@ -52,7 +52,7 @@ const Footer = () => {
           </Typography>
         </Grid>
 
-        {/* Address */}
+       
         <Grid
           item
           xs={12}
@@ -78,7 +78,7 @@ const Footer = () => {
           </Typography>
         </Grid>
 
-        {/* Developed By */}
+       
         <Grid item xs={12}>
           <Box display="flex" justifyContent="center" alignItems="center">
             <IconButton

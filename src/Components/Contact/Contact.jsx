@@ -13,8 +13,8 @@ export default function Contact() {
         gap: 2,
         mt: 1,
         height: "100vh",
-        bgcolor: "white", // Set background color to black
-        color: "black", // Set text color to #8bc34a
+        bgcolor: "white", 
+        color: "black", 
       }}
     >
       <Typography variant="h4" sx={{ marginBottom: 2 }}>
@@ -26,7 +26,7 @@ export default function Contact() {
         feedback, feel free to reach out to us.
       </Typography>
 
-      {/* Contact Form */}
+      
       <Box
         component="form"
         sx={{
@@ -35,6 +35,7 @@ export default function Contact() {
           width: "100%",
           maxWidth: 400,
           gap: 2,
+          m:2
         }}
         noValidate
         autoComplete="off"
@@ -45,23 +46,23 @@ export default function Contact() {
           required
           InputProps={{
             sx: {
-              color: "black", // Set input text color to light green
+              color: "black", 
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color to light green
+                borderColor: "black", 
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color on hover to light green
+                borderColor: "black", 
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color when focused to light green
+                borderColor: "black", 
               },
             },
           }}
           InputLabelProps={{
             sx: {
-              color: "black", // Set label color to light green
+              color: "black", 
               "&.Mui-focused": {
-                color: "black", // Set label color when focused to light green
+                color: "black", 
               },
             },
           }}
@@ -72,23 +73,23 @@ export default function Contact() {
           required
           InputProps={{
             sx: {
-              color: "black", // Set input text color to light green
+              color: "black", 
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color to light green
+                borderColor: "black", 
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color on hover to light green
+                borderColor: "black", 
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color when focused to light green
+                borderColor: "black", 
               },
             },
           }}
           InputLabelProps={{
             sx: {
-              color: "black", // Set label color to light green
+              color: "black", 
               "&.Mui-focused": {
-                color: "black", // Set label color when focused to light green
+                color: "black", 
               },
             },
           }}
@@ -101,23 +102,23 @@ export default function Contact() {
           required
           InputProps={{
             sx: {
-              color: "black", // Set input text color to light green
+              color: "black", 
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color to light green
+                borderColor: "black", 
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color on hover to light green
+                borderColor: "black", 
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "black", // Set input border color when focused to light green
+                borderColor: "black", 
               },
             },
           }}
           InputLabelProps={{
             sx: {
-              color: "black", // Set label color to light green
+              color: "black", 
               "&.Mui-focused": {
-                color: "black", // Set label color when focused to light green
+                color: "black", 
               },
             },
           }}
@@ -125,10 +126,10 @@ export default function Contact() {
         <Button
           variant="contained"
           sx={{
-            bgcolor: "white", // Set button background color to light green
-            color: "black", // Set button text color to black
+            bgcolor: "white", 
+            color: "black", 
             "&:hover": {
-              bgcolor: "#7cb342", // Set button background color on hover to a darker green
+              bgcolor: "#7cb342", 
             },
           }}
           type="submit"

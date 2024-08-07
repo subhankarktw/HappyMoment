@@ -12,11 +12,11 @@ export default function HappyMomentsBlog() {
         padding: 4,
         mt: 7,
         gap: 4,
-        bgcolor: "white", // Set background color to black
-        color: "black", // Set text color to #8bc34a
+        bgcolor: "white", 
+        color: "black", 
       }}
     >
-      {/* Division 1: Share Your Happy Moment */}
+      
       <Box
         sx={{
           width: "80%",
@@ -44,7 +44,6 @@ export default function HappyMomentsBlog() {
         </Typography>
       </Box>
 
-      {/* Division 2: Connect with Others */}
       <Box
         sx={{
           width: "80%",
@@ -73,7 +72,7 @@ export default function HappyMomentsBlog() {
         </Typography>
       </Box>
 
-      {/* Division 3: Embrace Positivity */}
+    
       <Box
         sx={{
           width: "80%",

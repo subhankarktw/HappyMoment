@@ -31,7 +31,7 @@ export default function Editproduct() {
   const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
-    dispatch(editProduct(id)); // Fetch product data when the component mounts
+    dispatch(editProduct(id)); 
   }, [id, dispatch]);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Editproduct() {
       id: id,
     };
     dispatch(updateProduct(updatedData));
-    setSuccessMessage("Product updated successfully!"); // Set success message
+    setSuccessMessage("Product updated successfully!"); 
   };
 
   useEffect(() => {
@@ -70,8 +70,8 @@ export default function Editproduct() {
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
-        bgcolor: "white", // Set background color to white
-        color: "black", // Set text color to black
+        bgcolor: "white", 
+        color: "black", 
       }}
     >
       <Typography component="h1" variant="h5" sx={{ mt: 4 }}>
@@ -79,12 +79,12 @@ export default function Editproduct() {
       </Typography>
       <Box
         component="form"
-        onSubmit={handleSubmit(onSubmit)} // Use handleSubmit from useForm
+        onSubmit={handleSubmit(onSubmit)} 
         sx={{
           m: 2,
           p: 4,
           borderRadius: 2,
-          bgcolor: "rgba(255, 255, 255, 0.1)", // Set form background to a darker white
+          bgcolor: "rgba(255, 255, 255, 0.1)", 
           boxShadow: 5,
           maxWidth: 400,
         }}
@@ -172,7 +172,7 @@ export default function Editproduct() {
                   type="submit"
                   variant="contained"
                   sx={{ bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
-                  disabled={loading} // Disable button while loading
+                  disabled={loading} 
                 >
                   Update Post
                 </Button>

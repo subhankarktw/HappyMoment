@@ -252,7 +252,7 @@ export default function Navbar() {
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
                     alt="Profile Picture"
-                    src={user?.profile_pic ? profile_Url(user.profile_pic) :""} // Fallback image
+                    src={user?.profile_pic ? profile_Url(user.profile_pic) :""} 
                     sx={{ width: 40, height: 40 }}
                   />
                 </IconButton>

@@ -91,7 +91,7 @@ export default function ShowProduct() {
       <Grid container spacing={3} sx={{ m: 0 }}>
         {filteredProducts && filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
-            <Grid item xs={12} sm={6} md={4} key={product._id}>
+            <Grid item xs={12} sm={6} md={4} key={product._id} className="cards">
               <Card className="card">
                 <img
                   src={`https://wtsacademy.dedicateddevelopers.us/uploads/product/${product?.image}`}

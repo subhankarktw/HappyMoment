@@ -16,7 +16,7 @@ import {
 } from "../../Redux/curdSlice";
 import { useForm } from "react-hook-form";
 
-export default function Editproduct() {
+export default function EditProduct() {
   const { id } = useParams();
   const {
     isUpdate,
@@ -27,11 +27,16 @@ export default function Editproduct() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm();
   const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
-    dispatch(editProduct(id)); 
+    dispatch(editProduct(id));
   }, [id, dispatch]);
 
   useEffect(() => {
@@ -52,7 +57,7 @@ export default function Editproduct() {
       id: id,
     };
     dispatch(updateProduct(updatedData));
-    setSuccessMessage("Product updated successfully!"); 
+    setSuccessMessage("Product updated successfully!");
   };
 
   useEffect(() => {
@@ -70,8 +75,9 @@ export default function Editproduct() {
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
-        bgcolor: "white", 
-        color: "black", 
+        backgroundImage: "url(images/background.jpg)",
+        bgcolor: "white",
+        color: "black",
       }}
     >
       <Typography component="h1" variant="h5" sx={{ mt: 4 }}>
@@ -79,12 +85,12 @@ export default function Editproduct() {
       </Typography>
       <Box
         component="form"
-        onSubmit={handleSubmit(onSubmit)} 
+        onSubmit={handleSubmit(onSubmit)}
         sx={{
           m: 2,
           p: 4,
           borderRadius: 2,
-          bgcolor: "rgba(255, 255, 255, 0.1)", 
+          bgcolor: "rgba(255, 255, 255, 0.1)",
           boxShadow: 5,
           maxWidth: 400,
         }}
@@ -132,7 +138,10 @@ export default function Editproduct() {
                 rows={4}
                 id="description"
                 label="Description"
-                {...register("description", { required: "Please enter description" })}
+                {...register("description", {
+                  required: "Please enter a description",
+                  
+                })}
                 error={!!errors.description}
                 helperText={errors.description?.message}
                 InputLabelProps={{
@@ -171,8 +180,12 @@ export default function Editproduct() {
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{ bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
-                  disabled={loading} 
+                  sx={{
+                    bgcolor: "white",
+                    color: "black",
+                    "&:hover": { bgcolor: "black", color: "white" },
+                  }}
+                  disabled={loading}
                 >
                   Update Post
                 </Button>

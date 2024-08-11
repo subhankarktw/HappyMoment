@@ -6,6 +6,7 @@ import {
   CardContent,
   Button,
   TextField,
+  CircularProgress,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +16,9 @@ import "../Products/showproduct.css";
 
 export default function ShowProduct() {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.productauthentication);
+  const { products, loading, error } = useSelector(
+    (state) => state.productauthentication
+  );
   const [delete_id, setDelete_id] = useState(null);
   const [isDelete, setIsDelete] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -49,6 +52,13 @@ export default function ShowProduct() {
       product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const truncateDescription = (description) => {
+    if (description.length > 400) {
+      return description.slice(0, 400) + "...";
+    }
+    return description;
+  };
 
   return (
     <Box className="body">
@@ -88,48 +98,65 @@ export default function ShowProduct() {
         </Button>
       </Box>
 
-      <Grid container spacing={3} sx={{ m: 0 }}>
-        {filteredProducts && filteredProducts.length > 0 ? (
-          filteredProducts.map((product) => (
-            <Grid item xs={12} sm={6} md={4} key={product._id} className="cards">
-              <Card className="card">
-                <img
-                  src={`https://wtsacademy.dedicateddevelopers.us/uploads/product/${product?.image}`}
-                  alt={product.title}
-                  className="card-image"
-                />
-                <CardContent>
-                  <Typography variant="h5" component="div">
-                    <strong>Title: </strong> {product.title}
-                  </Typography>
-                  <Typography variant="body1" component="div">
-                    <strong>Description: </strong> {product.description}
-                  </Typography>
-                </CardContent>
-                <Box display="flex" justifyContent="space-between" p={2}>
-                  <Button
-                    variant="contained"
-                    className="edit-button"
-                    component={Link}
-                    to={`/detail/${product._id}`}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    variant="contained"
-                    className="delete-button"
-                    onClick={() => handleDelete(product._id)}
-                  >
-                    Delete
-                  </Button>
-                </Box>
-              </Card>
-            </Grid>
-          ))
-        ) : (
-          <Typography variant="h6">No products available</Typography>
-        )}
-      </Grid>
+      {loading ? (
+        <Box display="flex" justifyContent="center" p={2}>
+          <CircularProgress />
+        </Box>
+      ) : error ? (
+        <Typography variant="h6" color="error">
+          {error.message}
+        </Typography>
+      ) : (
+        <Grid container spacing={3} sx={{ m: 0 }}>
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                key={product._id}
+                className="cards"
+              >
+                <Card className="card">
+                  <img
+                    src={`https://wtsacademy.dedicateddevelopers.us/uploads/product/${product?.image}`}
+                    alt={product.title}
+                    className="card-image"
+                  />
+                  <CardContent>
+                    <Typography variant="h5" component="div">
+                      <strong>{product.title}</strong>
+                    </Typography>
+                    <Typography variant="body1" component="div">
+                      <strong>{truncateDescription(product.description)}</strong>
+                    </Typography>
+                  </CardContent>
+                  <Box display="flex" justifyContent="space-between" p={2}>
+                    <Button
+                      variant="contained"
+                      className="edit-button"
+                      component={Link}
+                      to={`/detail/${product._id}`}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="contained"
+                      className="delete-button"
+                      onClick={() => handleDelete(product._id)}
+                    >
+                      Delete
+                    </Button>
+                  </Box>
+                </Card>
+              </Grid>
+            ))
+          ) : (
+            <Typography variant="h6">No products available</Typography>
+          )}
+        </Grid>
+      )}
 
       {isDelete && (
         <Box className="confirmation-dialog">

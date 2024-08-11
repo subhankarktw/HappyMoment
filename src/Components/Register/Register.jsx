@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../../Redux/authSlice"; 
-import { Box, Button, Grid, TextField, Typography, CircularProgress } from "@mui/material";
+import { signup } from "../../Redux/authSlice";
+import {
+  Box,
+  Button,
+  Grid,
+  TextField,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import { useForm } from "react-hook-form";
-import { unwrapResult } from '@reduxjs/toolkit'; 
+import { unwrapResult } from "@reduxjs/toolkit";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -12,8 +19,8 @@ export default function Register() {
   const [imgName, setImageName] = useState("");
   const dispatch = useDispatch();
   const { reDirectLogin } = useSelector((state) => state.authentication);
-  const [errorMessage, setErrorMessage] = useState(""); 
-  const [loading, setLoading] = useState(false); 
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -44,18 +51,18 @@ export default function Register() {
     formdata.append("password", data.password);
     formdata.append("profile_pic", img);
 
-    setLoading(true); 
+    setLoading(true);
 
     try {
       const resultAction = await dispatch(signup(formdata));
-      const result = unwrapResult(resultAction); 
+      const result = unwrapResult(resultAction);
       localStorage.setItem("email", result.data.email);
       navigate("/login");
     } catch (error) {
       console.error("Signup failed", error);
-      setErrorMessage("Signup failed. Please check your input and try again."); 
+      setErrorMessage("Signup failed. Please check your input and try again.");
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -66,19 +73,88 @@ export default function Register() {
   }, [reDirectLogin, navigate]);
 
   return (
-    <Grid container sx={{ height: "100vh", justifyContent: "center", backgroundImage: "url(images/pexels2.jpg)", backgroundSize: "cover", backgroundPosition: "center" }}>
-      <Grid item xs={false} sm={6} sx={{ display: { xs: "none", sm: "block" } }}>
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh" }}>
-          <img src="images/children.png" alt="Happy Moments" style={{ width: "300px", height: "300px" }} />
-          <Typography variant="h4" sx={{ color: "white", fontWeight: "800", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.9)", mt: 1, fontFamily: "monospace", }}>Happy Moments</Typography>
+    <Grid
+      container
+      sx={{
+        height: "100vh",
+        justifyContent: "center",
+        backgroundImage: "url(images/home10.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <Grid
+        item
+        xs={false}
+        sm={6}
+        sx={{ display: { xs: "none", sm: "block" } }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+          }}
+        >
+          <img
+            src="images/children.png"
+            alt="Happy Moments"
+            style={{ width: "300px", height: "300px" }}
+          />
+          <Typography
+            variant="h4"
+            sx={{
+              color: "white",
+              fontWeight: "800",
+              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.9)",
+              mt: 1,
+              fontFamily: "monospace",
+            }}
+          >
+            Happy Moments
+          </Typography>
         </Box>
       </Grid>
 
-      <Grid item xs={12} sm={6} sx={{ display: "flex", flexDirection: "column", alignItems: "center", height: "100vh", padding: 4 }}>
-        <Typography component="h1" variant="h5" sx={{ mt: 6, color: "black", fontWeight: "800", fontFamily: "monospace", }}>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          height: "100vh",
+          padding: 4,
+        }}
+      >
+        <Typography
+          component="h1"
+          variant="h5"
+          sx={{
+            mt: 6,
+            color: "black",
+            fontWeight: "800",
+            fontFamily: "monospace",
+          }}
+        >
           Register
         </Typography>
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ fontFamily: "monospace", mt: 2, p: 4, borderRadius: 2, backgroundColor: "white", boxShadow: 3, opacity: 0.8 }}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit(onSubmit)}
+          sx={{
+            fontFamily: "monospace",
+            mt: 2,
+            p: 4,
+            borderRadius: 2,
+            backgroundColor: "white",
+            boxShadow: 3,
+            opacity: 0.8,
+          }}
+        >
           {errorMessage && (
             <Typography variant="body2" sx={{ color: "red" }}>
               {errorMessage}
@@ -90,7 +166,9 @@ export default function Register() {
                 fullWidth
                 id="first_name"
                 label="First Name"
-                {...register("first_name", { required: "Please enter first name" })}
+                {...register("first_name", {
+                  required: "Please enter first name",
+                })}
                 error={Boolean(errors.first_name)}
                 helperText={errors.first_name?.message}
                 InputLabelProps={{ style: { color: "black" } }}
@@ -98,9 +176,15 @@ export default function Register() {
                   style: { color: "black" },
                   sx: {
                     fontFamily: "monospace",
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
-                    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
                   },
                 }}
               />
@@ -110,7 +194,9 @@ export default function Register() {
                 fullWidth
                 id="last_name"
                 label="Last Name"
-                {...register("last_name", { required: "Please enter last name" })}
+                {...register("last_name", {
+                  required: "Please enter last name",
+                })}
                 error={Boolean(errors.last_name)}
                 helperText={errors.last_name?.message}
                 InputLabelProps={{ style: { color: "black" } }}
@@ -118,9 +204,15 @@ export default function Register() {
                   style: { color: "black" },
                   sx: {
                     fontFamily: "monospace",
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
-                    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
                   },
                 }}
               />
@@ -130,7 +222,9 @@ export default function Register() {
                 fullWidth
                 id="email"
                 label="Email Address"
-                {...register("email", { required: "Please enter email address" })}
+                {...register("email", {
+                  required: "Please enter email address",
+                })}
                 error={Boolean(errors.email)}
                 helperText={errors.email?.message}
                 InputLabelProps={{ style: { color: "black" } }}
@@ -138,9 +232,15 @@ export default function Register() {
                   style: { color: "black" },
                   sx: {
                     fontFamily: "monospace",
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
-                    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
                   },
                 }}
               />
@@ -151,7 +251,9 @@ export default function Register() {
                 id="password"
                 label="Password"
                 type="password"
-                {...register("password", { required: "Please enter your password" })}
+                {...register("password", {
+                  required: "Please enter your password",
+                })}
                 error={Boolean(errors.password)}
                 helperText={errors.password?.message}
                 InputLabelProps={{ style: { color: "black" } }}
@@ -159,15 +261,28 @@ export default function Register() {
                   style: { color: "black" },
                   sx: {
                     fontFamily: "monospace",
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
-                    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "black" },
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
                   },
                 }}
               />
             </Grid>
             <Grid item xs={12}>
-              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", mt: 2 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mt: 2,
+                }}
+              >
                 <input
                   accept="image/*"
                   type="file"
@@ -177,31 +292,66 @@ export default function Register() {
                   style={{ display: "none" }}
                 />
                 <label htmlFor="image">
-                  <Button variant="contained" sx={{ fontFamily: "monospace", bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }} component="span">
+                  <Button
+                    variant="contained"
+                    sx={{
+                      fontFamily: "monospace",
+                      bgcolor: "white",
+                      color: "black",
+                      "&:hover": { bgcolor: "black", color: "white" },
+                    }}
+                    component="span"
+                  >
                     Upload Profile Picture
                   </Button>
                 </label>
                 {imgName && (
-                  <Typography variant="body2" sx={{ fontFamily: "monospace", ml: 2, color: "black" }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ fontFamily: "monospace", ml: 2, color: "black" }}
+                  >
                     {imgName}
                   </Typography>
                 )}
               </Box>
             </Grid>
             <Grid item xs={12}>
-              <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", mt: 2 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  mt: 2,
+                }}
+              >
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{ fontFamily: "monospace", mt: 2, mb: 2, bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
-                  disabled={isSubmitting || loading} 
+                  sx={{
+                    fontFamily: "monospace",
+                    mt: 2,
+                    mb: 2,
+                    bgcolor: "white",
+                    color: "black",
+                    "&:hover": { bgcolor: "black", color: "white" },
+                  }}
+                  disabled={isSubmitting || loading}
                 >
-                  {loading ? <CircularProgress size={24} color="inherit" /> : "Register"}
+                  {loading ? (
+                    <CircularProgress size={24} color="inherit" />
+                  ) : (
+                    "Register"
+                  )}
                 </Button>
               </Box>
             </Grid>
           </Grid>
-          <Grid container justifyContent="center" alignItems="center" sx={{ mt: 2 }}>
+          <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+            sx={{ mt: 2 }}
+          >
             <Typography sx={{ fontFamily: "monospace", mr: 1, color: "black" }}>
               Already registered?
             </Typography>
@@ -209,7 +359,12 @@ export default function Register() {
               component={Link}
               to="/login"
               variant="contained"
-              sx={{ fontFamily: "monospace", bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
+              sx={{
+                fontFamily: "monospace",
+                bgcolor: "white",
+                color: "black",
+                "&:hover": { bgcolor: "black", color: "white" },
+              }}
             >
               Login
             </Button>

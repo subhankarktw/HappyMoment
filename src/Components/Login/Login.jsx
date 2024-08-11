@@ -65,7 +65,7 @@ export default function Login() {
       sx={{
         height: "100vh",
         justifyContent: "center",
-        backgroundImage: "url(images/pexel.jpg)",
+        backgroundImage: "url(images/home03.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -114,7 +114,7 @@ export default function Login() {
           sx={{
             mt: 6,
             fontFamily: "monospace",
-            color: "black",
+            color: "white",
             fontWeight: "bold",
           }}
         >
@@ -127,7 +127,7 @@ export default function Login() {
             mt: 2,
             p: 4,
             borderRadius: 2,
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            backgroundColor: "rgba(255, 255, 255, 0.5)",
             boxShadow: 3,
           }}
         >

@@ -29,7 +29,7 @@ export default function AddProduct() {
     const file = e.target.files[0];
     if (file) {
       setImg(file);
-       setImgName(file.name);
+      setImgName(file.name);
     }
   };
 

@@ -78,7 +78,7 @@ export default function Register() {
       sx={{
         height: "100vh",
         justifyContent: "center",
-        backgroundImage: "url(images/home10.jpg)",
+        backgroundImage: "url(images/home01.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

@@ -8,12 +8,20 @@ const initialState = {
   isAdded: false,
   isUpdate: false,
   redirectShowProduct: null,
+  totalPages:"",
 };
 
-export const fetchProduct = createAsyncThunk("fetchProduct", async () => {
-  let res = await axiosInstance.post("/api/product/list");
-  return res.data;
-});
+export const fetchProduct = createAsyncThunk(
+  "fetchProduct",
+  async ({ page, perPage }) => {
+    const res = await axiosInstance.post("/api/product/list", {
+      page,
+      perPage,
+    });
+    return res.data;
+  }
+);
+
 
 export const addProduct = createAsyncThunk("addProduct", async (formdata) => {
   let res = await axiosInstance.post("/api/product/create", formdata);
@@ -62,9 +70,11 @@ const curdoperationSlice = createSlice({
         state.upload_status = "loading";
       })
       .addCase(fetchProduct.fulfilled, (state, { payload }) => {
-        state.upload_status = "fetced successfully";
-        state.products = payload.data;
+        state.upload_status = "fetched successfully";
+        state.products = payload.data; // Products for the current page
+        state.totalPages = payload.totalPages; // Total number of pages available
       })
+      
       .addCase(fetchProduct.rejected, (state) => {
         state.upload_status = "failed";
       })

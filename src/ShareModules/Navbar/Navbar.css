@@ -1,0 +1,12 @@
+.box-container {
+  flex-grow: 1;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logo-image {
+  height: 50px;
+  width: 50px;
+}
+
+

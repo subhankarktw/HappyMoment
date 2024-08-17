@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { Box, IconButton, Typography } from "@mui/material";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
+import "./Carousel.css"; // Import the CSS file
 
 const images = [
   { src: "images/home1.jpg", alt: "Beautiful landscape with mountains" },
@@ -24,14 +25,14 @@ export default function Carousel() {
   };
 
   return (
-    <Box sx={{ position: "relative", width: "100%", overflow: "hidden", mt: 7 }}>
+    <Box className="carousel-container">
       <SwipeableViews index={index} enableMouseEvents>
         {images.map((image, idx) => (
           <div key={idx}>
             <img
               src={image.src}
               alt={image.alt} // Updated alt text
-              style={{ width: "100%", height: "auto" }} // Maintain the width and height styles
+              className="carousel-image" // Apply CSS class
               loading="lazy"
             />
           </div>
@@ -39,35 +40,23 @@ export default function Carousel() {
       </SwipeableViews>
       <IconButton
         onClick={handlePrev}
-        sx={{
-          position: "absolute",
-          left: 16,
-          top: "50%",
-          transform: "translateY(-50%)",
-          color: "white",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
-        }}
+        className="carousel-button carousel-button-prev"
       >
         <KeyboardArrowLeft />
       </IconButton>
       <IconButton
         onClick={handleNext}
-        sx={{
-          position: "absolute",
-          right: 16,
-          top: "50%",
-          transform: "translateY(-50%)",
-          color: "white",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
-        }}
+        className="carousel-button carousel-button-next"
       >
         <KeyboardArrowRight />
       </IconButton>
-      <Box sx={{ position: "absolute", bottom: 16, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 1 }}>
+      <Box className="carousel-indicators">
         {images.map((_, idx) => (
-          <Typography key={idx} variant="body1" sx={{ color: index === idx ? "white" : "gray", cursor: "pointer" }} onClick={() => setIndex(idx)}>
+          <Typography
+            key={idx}
+            className={`carousel-indicator ${index === idx ? "carousel-indicator-active" : ""}`}
+            onClick={() => setIndex(idx)}
+          >
             ●
           </Typography>
         ))}

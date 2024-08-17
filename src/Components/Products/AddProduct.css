@@ -1,0 +1,83 @@
+/* AddProduct.css */
+
+.add-product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: black;
+   
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .add-product-title {
+    margin-top: 1rem;
+    color: white;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  }
+  
+  .add-product-form {
+    padding: 16px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 16px;
+  }
+  
+  .add-product-textfield {
+    color: black;
+  }
+  
+  .add-product-textfield .MuiInputLabel-root {
+    color: black;
+  }
+  
+  .add-product-textfield .MuiInputLabel-root.Mui-focused {
+    color: black;
+  }
+  
+  .add-product-textfield .MuiOutlinedInput-notchedOutline {
+    border-color: black;
+  }
+  
+  .add-product-textfield:hover .MuiOutlinedInput-notchedOutline,
+  .add-product-textfield:focus .MuiOutlinedInput-notchedOutline {
+    border-color: black;
+  }
+  
+  .file-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  
+  .upload-image-button {
+    background-color: white;
+    color: black;
+  }
+  
+  .upload-image-button:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  .uploaded-file-name {
+    margin-left: 16px;
+    color: black;
+  }
+  
+  .upload-post-button {
+    background-color: white;
+    color: black;
+  }
+  
+  .upload-post-button:hover {
+    background-color: black;
+    color: white;
+  }
+  

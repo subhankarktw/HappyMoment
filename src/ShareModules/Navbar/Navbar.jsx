@@ -17,6 +17,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import img from "./children.png";
 import { profile_Url } from "../../Helper/Helper";
+import "../Navbar/Navbar.css";
 
 const Navitems = [
   { name: "Home", route: "/" },
@@ -24,17 +25,13 @@ const Navitems = [
   { name: "Contact", route: "/contact" },
 ];
 
-const Posts = [
-  { name: "Posts", route: "/showpost" },
-];
+const Posts = [{ name: "Posts", route: "/showpost" }];
 
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  
 
   const { isLogin, user } = useSelector((state) => state.authentication);
   const FirstName = localStorage.getItem("first_name");
@@ -63,7 +60,7 @@ export default function Navbar() {
   useEffect(() => {
     if (isLogin) {
       dispatch(profile());
-    } 
+    }
   }, [dispatch, isLogin]);
 
   useEffect(() => {
@@ -71,24 +68,23 @@ export default function Navbar() {
   }, [FirstName]);
 
   return (
-    <AppBar position="fixed" sx={{ bgcolor: "white", color: "black" }}>
+    <AppBar position="fixed"  sx={{ bgcolor: "white", color: "black" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
-              flexGrow: 1,
-              justifyContent: "flex-start",
-              alignItems: "center",
             }}
+            className="box-container"
           >
             <div className="logo">
-              <img src={img} alt="" style={{ height: "50px", width: "50px" }} />
+              <img src={img} alt=""  className="logo-image"  />
             </div>
             <Typography
               variant="h6"
               noWrap
               component="div"
+              className="title"
               sx={{
                 mr: 2,
                 ml: 3,
@@ -102,7 +98,7 @@ export default function Navbar() {
             </Typography>
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }} >
             <IconButton
               size="large"
               aria-label="menu"
@@ -184,23 +180,23 @@ export default function Navbar() {
                 </Link>
               ))}
               {isLogin && (
-              <>
-                {Posts.map((post) => (
-                  <Link
-                    key={post.route}
-                    to={post.route}
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    <Button
-                      onClick={handleCloseNavMenu}
-                      sx={{ color: "black", }}
+                <>
+                  {Posts.map((post) => (
+                    <Link
+                      key={post.route}
+                      to={post.route}
+                      style={{ textDecoration: "none", color: "inherit" }}
                     >
-                      {post.name}
-                    </Button>
-                  </Link>
-                ))}
-              </>
-            )}
+                      <Button
+                        onClick={handleCloseNavMenu}
+                        sx={{ color: "black" }}
+                      >
+                        {post.name}
+                      </Button>
+                    </Link>
+                  ))}
+                </>
+              )}
             </Menu>
           </Box>
 
@@ -252,7 +248,7 @@ export default function Navbar() {
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
                     alt="Profile Picture"
-                    src={user?.profile_pic ? profile_Url(user.profile_pic) :""} 
+                    src={user?.profile_pic ? profile_Url(user.profile_pic) : ""}
                     sx={{ width: 40, height: 40 }}
                   />
                 </IconButton>
@@ -272,7 +268,10 @@ export default function Navbar() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  <MenuItem onClick={handleCloseUserMenu} sx={{ bgcolor: "white", color: "black" }}>
+                  <MenuItem
+                    onClick={handleCloseUserMenu}
+                    sx={{ bgcolor: "white", color: "black" }}
+                  >
                     <Link
                       to="/profile"
                       style={{ textDecoration: "none", color: "black" }}
@@ -280,7 +279,10 @@ export default function Navbar() {
                       {isLogged}
                     </Link>
                   </MenuItem>
-                  <MenuItem onClick={handleLogout} sx={{ bgcolor: "white", color: "black" }}>
+                  <MenuItem
+                    onClick={handleLogout}
+                    sx={{ bgcolor: "white", color: "black" }}
+                  >
                     <Typography textAlign="center">Logout</Typography>
                   </MenuItem>
                 </Menu>

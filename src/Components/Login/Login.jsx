@@ -12,6 +12,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
+import "./Login.css";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -62,21 +63,10 @@ export default function Login() {
   return (
     <Grid
       container
-      sx={{
-        height: "100vh",
-        justifyContent: "center",
-        backgroundImage: "url(images/home03.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="login-container"
+      style={{ backgroundImage: `url(/images/home03.jpg)` }}
     >
-      
-      <Grid
-        item
-        xs={false}
-        sm={6}
-        sx={{ display: { xs: "none", sm: "block" } }}
-      >
+      <Grid item xs={false} sm={6} className="login-image">
         <Box
           sx={{
             display: "flex",
@@ -87,49 +77,26 @@ export default function Login() {
           }}
         >
           <img
-            src="images/3d.png"
+            src="/images/3d.png"
             alt="Happy Moments"
-            style={{ width: "400px", height: "400px" }}
+            className="login-image-img"
           />
         </Box>
       </Grid>
 
-    
       <Grid
         item
         xs={12}
         sm={6}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          alignItems: "center",
-          height: "100vh",
-          padding: 4,
-        }}
+        className="login-form-container"
       >
-        <Typography
-          component="h1"
-          variant="h4"
-          sx={{
-            mt: 6,
-            fontFamily: "monospace",
-            color: "white",
-            fontWeight: "bold",
-          }}
-        >
+        <Typography component="h1" variant="h4" className="login-title">
           Login
         </Typography>
         <Box
           component="form"
           onSubmit={handleSubmit(onSubmit)}
-          sx={{
-            mt: 2,
-            p: 4,
-            borderRadius: 2,
-            backgroundColor: "rgba(255, 255, 255, 0.5)",
-            boxShadow: 3,
-          }}
+          className="login-form"
         >
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -143,21 +110,8 @@ export default function Login() {
                 })}
                 error={Boolean(errors.email)}
                 helperText={errors.email?.message}
+                className="login-form-text-field"
                 InputLabelProps={{ style: { color: "black" } }}
-                InputProps={{
-                  sx: {
-                    fontFamily: "monospace",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                  },
-                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -172,21 +126,8 @@ export default function Login() {
                 })}
                 error={Boolean(errors.password)}
                 helperText={errors.password?.message}
+                className="login-form-text-field"
                 InputLabelProps={{ style: { color: "black" } }}
-                InputProps={{
-                  sx: {
-                    fontFamily: "monospace",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                  },
-                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -200,17 +141,7 @@ export default function Login() {
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{
-                    fontFamily: "monospace",
-                    mt: 2,
-                    mb: 2,
-                    bgcolor: "black",
-                    color: "white",
-                    "&:hover": {
-                      bgcolor: "white",
-                      color: "black",
-                    },
-                  }}
+                  className="login-form-button"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
@@ -228,23 +159,14 @@ export default function Login() {
             alignItems="center"
             sx={{ mt: 2 }}
           >
-            <Typography sx={{ fontFamily: "monospace", mr: 1, color: "black" }}>
+            <Typography className="login-register-link">
               Not registered? Please{" "}
             </Typography>
             <Button
               component={Link}
               to="/register"
               variant="outlined"
-              sx={{
-                fontFamily: "monospace",
-                borderColor: "black",
-                color: "black",
-                "&:hover": {
-                  borderColor: "black",
-                  backgroundColor: "black",
-                  color: "white",
-                },
-              }}
+              className="login-register-button"
             >
               Register
             </Button>

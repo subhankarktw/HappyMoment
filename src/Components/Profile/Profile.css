@@ -1,0 +1,52 @@
+/* Profile.css */
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .profile-title {
+    margin-bottom: 12px;
+    margin-top: 120px;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .profile-pic-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+  }
+  
+  .profile-pic {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .text-field {
+    margin-bottom: 16px;
+  }
+  
+  .text-field .MuiOutlinedInput-notchedOutline {
+    border-color: black;
+  }
+  
+  .text-field .Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: black;
+  }
+  
+  .text-field .MuiInputLabel-root {
+    color: black;
+  }
+  

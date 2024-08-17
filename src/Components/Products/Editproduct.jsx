@@ -8,20 +8,16 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import {
-  editProduct,
-  restAddedState,
-  updateProduct,
-} from "../../Redux/curdSlice";
+import { useParams, useNavigate } from "react-router-dom";
+import { editProduct, updateProduct } from "../../Redux/curdSlice";
 import { useForm } from "react-hook-form";
+import "./EditProduct.css"; 
 
 export default function EditProduct() {
   const { id } = useParams();
   const {
-    isUpdate,
     editProducts,
-    loading,
+    loading: loadingFromStore,
     error: updateError,
   } = useSelector((state) => state.productauthentication);
   const dispatch = useDispatch();
@@ -33,6 +29,8 @@ export default function EditProduct() {
     setValue,
     formState: { errors },
   } = useForm();
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
@@ -40,63 +38,72 @@ export default function EditProduct() {
   }, [id, dispatch]);
 
   useEffect(() => {
-    if (editProducts.data && editProducts.data.title && editProducts.data.description) {
+    if (editProducts.data) {
       setValue("title", editProducts.data.title);
       setValue("description", editProducts.data.description);
-    } else {
-      console.log(
-        "Edit products data is not available or structured incorrectly:",
-        editProducts
-      );
+      if (editProducts.data.image) {
+        setSelectedImage(
+          `https://wtsacademy.dedicateddevelopers.us/uploads/product/${editProducts.data.image}`
+        );
+      }
     }
   }, [editProducts, setValue]);
 
-  const onSubmit = (data) => {
-    const updatedData = {
-      ...data,
-      id: id,
-    };
-    dispatch(updateProduct(updatedData));
-    setSuccessMessage("Product updated successfully!");
+  const handleImageChange = (event) => {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      setSelectedImage(URL.createObjectURL(file));
+      setValue("image", file); // Register the file with useForm
+    }
   };
 
-  useEffect(() => {
-    if (isUpdate) {
-      navigate("/showpost");
-      dispatch(restAddedState());
+  const onSubmit = (data) => {
+    setIsSubmitting(true);
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+
+    // Check if a new image was uploaded
+    if (data.image && data.image instanceof File) {
+      formData.append("image", data.image); // New image uploaded
+    } else if (editProducts.data && editProducts.data.image) {
+      formData.append("image", editProducts.data.image); // Use existing image
+    } else {
+      console.error("No image file selected");
     }
-  }, [isUpdate, navigate, dispatch]);
+
+    formData.append("id", id);
+
+    dispatch(updateProduct(formData))
+      .then(() => {
+        setSuccessMessage("Edit successful!");
+        navigate("/showpost");
+      })
+      .catch((error) => {
+        console.error("Error updating product:", error);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
+  };
 
   return (
     <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-        backgroundImage: "url(images/background.jpg)",
-        bgcolor: "white",
-        color: "black",
-      }}
+      className="edit-product-container"
+      style={{ backgroundImage: `url(/images/background.jpg)` }}
     >
-      <Typography component="h1" variant="h5" sx={{ mt: 4 }}>
+      <Typography component="h1" variant="h5" className="edit-product-title">
         Edit Post
       </Typography>
       <Box
         component="form"
         onSubmit={handleSubmit(onSubmit)}
-        sx={{
-          m: 2,
-          p: 4,
-          borderRadius: 2,
-          bgcolor: "rgba(255, 255, 255, 0.1)",
-          boxShadow: 5,
-          maxWidth: 400,
-        }}
+        className="edit-product-form"
       >
-        {loading ? (
-          <CircularProgress />
+        {loadingFromStore || isSubmitting ? (
+          <Box className="edit-product-loader">
+            <CircularProgress />
+          </Box>
         ) : (
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -108,26 +115,11 @@ export default function EditProduct() {
                 error={!!errors.title}
                 helperText={errors.title?.message}
                 InputLabelProps={{
-                  sx: {
-                    color: "black",
-                    "&.Mui-focused": {
-                      color: "black",
-                    },
-                  },
+                  shrink: true,
+                  className: "input-label",
                 }}
                 InputProps={{
-                  sx: {
-                    color: "black",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                  },
+                  className: "input-field",
                 }}
               />
             </Grid>
@@ -140,67 +132,67 @@ export default function EditProduct() {
                 label="Description"
                 {...register("description", {
                   required: "Please enter a description",
-                  
                 })}
                 error={!!errors.description}
                 helperText={errors.description?.message}
                 InputLabelProps={{
-                  sx: {
-                    color: "black",
-                    "&.Mui-focused": {
-                      color: "black",
-                    },
-                  },
+                  shrink: true,
+                  className: "input-label",
                 }}
                 InputProps={{
-                  sx: {
-                    color: "black",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                  },
+                  className: "input-field",
                 }}
               />
             </Grid>
-            <Grid item xs={12}>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  mt: 2,
-                }}
+            <Grid item xs={12} className="edit-product-image-container">
+              {selectedImage && (
+                <Box
+                  component="img"
+                  src={selectedImage}
+                  alt="Selected Image"
+                  className="selected-image"
+                />
+              )}
+              <Button
+                variant="contained"
+                component="label"
+                className="upload-button"
               >
+                Upload Image
+                <input
+                  type="file"
+                  hidden
+                  {...register("image")}
+                  onChange={handleImageChange}
+                />
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <Box className="edit-product-button-container">
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{
-                    bgcolor: "white",
-                    color: "black",
-                    "&:hover": { bgcolor: "black", color: "white" },
-                  }}
-                  disabled={loading}
+                  className="update-button"
+                  disabled={isSubmitting || loadingFromStore}
                 >
-                  Update Post
+                  {isSubmitting ? (
+                    <CircularProgress size={24} color="inherit" />
+                  ) : (
+                    "Update Post"
+                  )}
                 </Button>
               </Box>
             </Grid>
           </Grid>
         )}
-        {updateError && (
-          <Typography variant="body2" sx={{ color: "red" }}>
-            {updateError}
+        {successMessage && (
+          <Typography variant="body2" className="success-message">
+            {successMessage}
           </Typography>
         )}
-        {successMessage && (
-          <Typography variant="body2" sx={{ color: "green" }}>
-            {successMessage}
+        {updateError && (
+          <Typography variant="body2" className="error-message">
+            {updateError}
           </Typography>
         )}
       </Box>

@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { unwrapResult } from "@reduxjs/toolkit";
+import "./Register.css"; // Import the CSS file
 
 export default function Register() {
   const navigate = useNavigate();
@@ -73,90 +74,31 @@ export default function Register() {
   }, [reDirectLogin, navigate]);
 
   return (
-    <Grid
-      container
-      sx={{
-        height: "100vh",
-        justifyContent: "center",
-        backgroundImage: "url(images/home01.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <Grid
-        item
-        xs={false}
-        sm={6}
-        sx={{ display: { xs: "none", sm: "block" } }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100vh",
-          }}
-        >
+    <Grid container className="register-container" style={{ backgroundImage: `url(/images/home01.jpg)` }}>
+      <Grid item xs={false} sm={6} className="register-sidebar">
+        <Box className="register-logo-container">
           <img
             src="images/children.png"
             alt="Happy Moments"
-            style={{ width: "300px", height: "300px" }}
+            className="register-logo"
           />
-          <Typography
-            variant="h4"
-            sx={{
-              color: "white",
-              fontWeight: "800",
-              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.9)",
-              mt: 1,
-              fontFamily: "monospace",
-            }}
-          >
+          <Typography variant="h4" className="register-title">
             Happy Moments
           </Typography>
         </Box>
       </Grid>
 
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          height: "100vh",
-          padding: 4,
-        }}
-      >
-        <Typography
-          component="h1"
-          variant="h5"
-          sx={{
-            mt: 6,
-            color: "black",
-            fontWeight: "800",
-            fontFamily: "monospace",
-          }}
-        >
+      <Grid item xs={12} sm={6} className="register-form-container">
+        <Typography component="h1" variant="h5" className="register-title">
           Register
         </Typography>
         <Box
           component="form"
           onSubmit={handleSubmit(onSubmit)}
-          sx={{
-            fontFamily: "monospace",
-            mt: 2,
-            p: 4,
-            borderRadius: 2,
-            backgroundColor: "white",
-            boxShadow: 3,
-            opacity: 0.8,
-          }}
+          className="register-form"
         >
           {errorMessage && (
-            <Typography variant="body2" sx={{ color: "red" }}>
+            <Typography variant="body2" className="error-message">
               {errorMessage}
             </Typography>
           )}
@@ -171,22 +113,7 @@ export default function Register() {
                 })}
                 error={Boolean(errors.first_name)}
                 helperText={errors.first_name?.message}
-                InputLabelProps={{ style: { color: "black" } }}
-                InputProps={{
-                  style: { color: "black" },
-                  sx: {
-                    fontFamily: "monospace",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                  },
-                }}
+                className="register-textfield"
               />
             </Grid>
             <Grid item xs={12}>
@@ -199,22 +126,7 @@ export default function Register() {
                 })}
                 error={Boolean(errors.last_name)}
                 helperText={errors.last_name?.message}
-                InputLabelProps={{ style: { color: "black" } }}
-                InputProps={{
-                  style: { color: "black" },
-                  sx: {
-                    fontFamily: "monospace",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                  },
-                }}
+                className="register-textfield"
               />
             </Grid>
             <Grid item xs={12}>
@@ -227,22 +139,7 @@ export default function Register() {
                 })}
                 error={Boolean(errors.email)}
                 helperText={errors.email?.message}
-                InputLabelProps={{ style: { color: "black" } }}
-                InputProps={{
-                  style: { color: "black" },
-                  sx: {
-                    fontFamily: "monospace",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                  },
-                }}
+                className="register-textfield"
               />
             </Grid>
             <Grid item xs={12}>
@@ -256,33 +153,11 @@ export default function Register() {
                 })}
                 error={Boolean(errors.password)}
                 helperText={errors.password?.message}
-                InputLabelProps={{ style: { color: "black" } }}
-                InputProps={{
-                  style: { color: "black" },
-                  sx: {
-                    fontFamily: "monospace",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
-                  },
-                }}
+                className="register-textfield"
               />
             </Grid>
             <Grid item xs={12}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  mt: 2,
-                }}
-              >
+              <Box className="file-input-container">
                 <input
                   accept="image/*"
                   type="file"
@@ -294,12 +169,7 @@ export default function Register() {
                 <label htmlFor="image">
                   <Button
                     variant="contained"
-                    sx={{
-                      fontFamily: "monospace",
-                      bgcolor: "white",
-                      color: "black",
-                      "&:hover": { bgcolor: "black", color: "white" },
-                    }}
+                    className="file-upload-button"
                     component="span"
                   >
                     Upload Profile Picture
@@ -308,7 +178,7 @@ export default function Register() {
                 {imgName && (
                   <Typography
                     variant="body2"
-                    sx={{ fontFamily: "monospace", ml: 2, color: "black" }}
+                    className="uploaded-file-name"
                   >
                     {imgName}
                   </Typography>
@@ -327,14 +197,7 @@ export default function Register() {
                 <Button
                   type="submit"
                   variant="contained"
-                  sx={{
-                    fontFamily: "monospace",
-                    mt: 2,
-                    mb: 2,
-                    bgcolor: "white",
-                    color: "black",
-                    "&:hover": { bgcolor: "black", color: "white" },
-                  }}
+                  className="register-submit-button"
                   disabled={isSubmitting || loading}
                 >
                   {loading ? (
@@ -349,25 +212,24 @@ export default function Register() {
           <Grid
             container
             justifyContent="center"
-            alignItems="center"
-            sx={{ mt: 2 }}
+            className="login-redirect"
           >
-            <Typography sx={{ fontFamily: "monospace", mr: 1, color: "black" }}>
-              Already registered?
-            </Typography>
-            <Button
-              component={Link}
-              to="/login"
-              variant="contained"
-              sx={{
-                fontFamily: "monospace",
-                bgcolor: "white",
-                color: "black",
-                "&:hover": { bgcolor: "black", color: "white" },
-              }}
-            >
-              Login
-            </Button>
+            <Grid item>
+              <Typography variant="body2" className="login-text">
+                Already have an account?
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="primary"
+                component={Link}
+                to="/login"
+                className="login-button"
+              >
+                Login
+              </Button>
+            </Grid>
           </Grid>
         </Box>
       </Grid>

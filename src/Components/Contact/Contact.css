@@ -1,0 +1,78 @@
+.contact-container {
+    background-color: #f5f5f5;
+    color: black;
+  }
+  
+  .contact-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px; /* Adjust as needed */
+    margin-top: 56px; /* Adjust based on your design */
+  }
+  
+  .contact-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    background-color: #f5f5f5;
+    color: black;
+  }
+  
+  .contact-title {
+    margin-bottom: 16px;
+    color: #1976d2; /* Primary blue */
+  }
+  
+  .contact-description {
+    text-align: center;
+    color: #555;
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    gap: 16px;
+    margin: 16px;
+  }
+  
+  .contact-textfield {
+    color: black;
+    border-color: #1976d2; /* Primary blue */
+  }
+  
+  .contact-textfield:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #1976d2;
+  }
+  
+  .contact-textfield-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #1976d2;
+  }
+  
+  .contact-textfield-label {
+    color: #1976d2;
+  }
+  
+  .contact-textfield-label-focused {
+    color: #1976d2;
+  }
+  
+  .contact-button {
+    background-color: #1976d2; /* Primary blue */
+    color: white;
+  }
+  
+  .contact-button:hover {
+    background-color: #1565c0; /* Darker blue on hover */
+  }
+  
+  .contact-map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+  }
+  

@@ -1,9 +1,10 @@
-import { Box, Button, Grid, TextField, Typography, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Box, Button, Grid, TextField, Typography, CircularProgress } from "@mui/material";
 import { addProduct, restAddedState } from "../../Redux/curdSlice";
+import "./AddProduct.css"; // Import the CSS file
 
 export default function AddProduct() {
   const navigate = useNavigate();
@@ -55,42 +56,18 @@ export default function AddProduct() {
   }, [isAdded, navigate, dispatch]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-        color: "black",
-        backgroundImage: "url(images/pexels2.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+    <Box className="add-product-container" style={{ backgroundImage: `url(/images/pexels2.jpg)` }}>
       <Typography 
         component="h1" 
         variant="h5" 
-        sx={{ 
-          mt: 4, 
-          color: "white", 
-          fontWeight: "800", 
-          textShadow: "2px 2px 4px rgba(0, 0, 0, 0.9)" 
-        }}
+        className="add-product-title"
       >
         Add Post
       </Typography>
       <Box
         component="form"
         onSubmit={handleSubmit(onSubmit)}
-        sx={{
-          p: 4,
-          borderRadius: 2,
-          bgcolor: "rgba(255, 255, 255, 0.7)",
-          boxShadow: 3,
-          maxWidth: 400,
-          m: 2,
-        }}
+        className="add-product-form"
       >
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -103,28 +80,7 @@ export default function AddProduct() {
               })}
               error={Boolean(errors.title)}
               helperText={errors.title?.message}
-              InputLabelProps={{
-                sx: {
-                  color: "black",
-                  "&.Mui-focused": {
-                    color: "black",
-                  },
-                },
-              }}
-              InputProps={{
-                sx: {
-                  color: "black",
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "black",
-                  },
-                  "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "black",
-                  },
-                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "black",
-                  },
-                },
-              }}
+              className="add-product-textfield"
             />
           </Grid>
           <Grid item xs={12}>
@@ -139,40 +95,12 @@ export default function AddProduct() {
               })}
               error={Boolean(errors.description)}
               helperText={errors.description?.message}
-              InputLabelProps={{
-                sx: {
-                  color: "black",
-                  "&.Mui-focused": {
-                    color: "black",
-                  },
-                },
-              }}
-              InputProps={{
-                sx: {
-                  color: "black",
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "black",
-                  },
-                  "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "black",
-                  },
-                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "black",
-                  },
-                },
-              }}
+              className="add-product-textfield"
             />
           </Grid>
 
           <Grid item xs={12}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                mt: 2,
-              }}
-            >
+            <Box className="file-input-container">
               <input
                 accept="image/*"
                 type="file"
@@ -184,14 +112,14 @@ export default function AddProduct() {
               <label htmlFor="image">
                 <Button
                   variant="contained"
-                  sx={{ bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
+                  className="upload-image-button"
                   component="span"
                 >
                   Upload Image
                 </Button>
               </label>
               {imgName && (
-                <Typography variant="body2" sx={{ ml: 2, color: "black" }}>
+                <Typography variant="body2" className="uploaded-file-name">
                   {imgName}
                 </Typography>
               )}
@@ -209,7 +137,7 @@ export default function AddProduct() {
               <Button
                 type="submit"
                 variant="contained"
-                sx={{ bgcolor: "white", color: "black", "&:hover": { bgcolor: "black", color: "white" } }}
+                className="upload-post-button"
                 disabled={isSubmitting || loading} 
               >
                 {loading ? <CircularProgress size={24} color="inherit" /> : "Upload Post"}

@@ -23,7 +23,6 @@
     "react-router-dom": "^6.25.1",
     "react-scripts": "5.0.1",
     "react-spring": "^9.7.4",
-    "react-swipeable-views": "^0.14.0",
     "react-toastify": "^10.0.5",
     "styled-components": "^6.1.12",
     "web-vitals": "^2.1.4"

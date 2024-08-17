@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SwipeableViews from "react-swipeable-views";
 import { Box, IconButton, Typography } from "@mui/material";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import "./Carousel.css"; // Import the CSS file
@@ -26,18 +25,15 @@ export default function Carousel() {
 
   return (
     <Box className="carousel-container">
-      <SwipeableViews index={index} enableMouseEvents>
-        {images.map((image, idx) => (
-          <div key={idx}>
-            <img
-              src={image.src}
-              alt={image.alt} // Updated alt text
-              className="carousel-image" // Apply CSS class
-              loading="lazy"
-            />
-          </div>
-        ))}
-      </SwipeableViews>
+      <div className="carousel-image-wrapper">
+        <img
+          src={images[index].src}
+          alt={images[index].alt}
+          className="carousel-image"
+          loading="lazy"
+        />
+      </div>
+
       <IconButton
         onClick={handlePrev}
         className="carousel-button carousel-button-prev"
@@ -50,6 +46,7 @@ export default function Carousel() {
       >
         <KeyboardArrowRight />
       </IconButton>
+
       <Box className="carousel-indicators">
         {images.map((_, idx) => (
           <Typography

@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { editProduct, updateProduct } from "../../Redux/curdSlice";
 import { useForm } from "react-hook-form";
-import "./EditProduct.css"; 
+import "./EditProduct.css";
 
 export default function EditProduct() {
   const { id } = useParams();
@@ -92,13 +92,14 @@ export default function EditProduct() {
       className="edit-product-container"
       style={{ backgroundImage: `url(/images/background.jpg)` }}
     >
-      <Typography component="h1" variant="h5" className="edit-product-title">
+      <Typography component="h1" variant="h5" className="edit-product-title" sx={{mt:5}}>
         Edit Post
       </Typography>
       <Box
         component="form"
         onSubmit={handleSubmit(onSubmit)}
         className="edit-product-form"
+        sx={{ margin: "0 auto", maxWidth: 600, padding: 2 , bgcolor:"white", borderRadius:"5px"}} // Center the form with margins and padding
       >
         {loadingFromStore || isSubmitting ? (
           <Box className="edit-product-loader">
@@ -144,19 +145,27 @@ export default function EditProduct() {
                 }}
               />
             </Grid>
-            <Grid item xs={12} className="edit-product-image-container">
+            <Grid item xs={12} sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              marginTop: 2, 
+            }}>
               {selectedImage && (
                 <Box
                   component="img"
                   src={selectedImage}
                   alt="Selected Image"
                   className="selected-image"
+                  sx={{ width: '100%', maxWidth: 400, height: 'auto' }}
                 />
               )}
               <Button
                 variant="contained"
                 component="label"
                 className="upload-button"
+                sx={{ marginTop: 2 }} 
               >
                 Upload Image
                 <input
@@ -168,7 +177,7 @@ export default function EditProduct() {
               </Button>
             </Grid>
             <Grid item xs={12}>
-              <Box className="edit-product-button-container">
+              <Box className="edit-product-button-container" sx={{ marginTop: 2 }}>
                 <Button
                   type="submit"
                   variant="contained"
@@ -186,12 +195,12 @@ export default function EditProduct() {
           </Grid>
         )}
         {successMessage && (
-          <Typography variant="body2" className="success-message">
+          <Typography variant="body2" className="success-message" sx={{ marginTop: 2 }}>
             {successMessage}
           </Typography>
         )}
         {updateError && (
-          <Typography variant="body2" className="error-message">
+          <Typography variant="body2" className="error-message" sx={{ marginTop: 2 }}>
             {updateError}
           </Typography>
         )}

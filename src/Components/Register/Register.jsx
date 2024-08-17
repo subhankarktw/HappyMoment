@@ -76,16 +76,7 @@ export default function Register() {
   return (
     <Grid container className="register-container" style={{ backgroundImage: `url(/images/home01.jpg)` }}>
       <Grid item xs={false} sm={6} className="register-sidebar">
-        <Box className="register-logo-container">
-          <img
-            src="images/children.png"
-            alt="Happy Moments"
-            className="register-logo"
-          />
-          <Typography variant="h4" className="register-title">
-            Happy Moments
-          </Typography>
-        </Box>
+        
       </Grid>
 
       <Grid item xs={12} sm={6} className="register-form-container">

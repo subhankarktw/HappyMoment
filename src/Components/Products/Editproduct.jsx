@@ -92,14 +92,14 @@ export default function EditProduct() {
       className="edit-product-container"
       style={{ backgroundImage: `url(/images/background.jpg)` }}
     >
-      <Typography component="h1" variant="h5" className="edit-product-title" sx={{mt:5}}>
+      <Typography component="h1" variant="h5" className="edit-product-title" sx={{mb:1}}>
         Edit Post
       </Typography>
       <Box
         component="form"
         onSubmit={handleSubmit(onSubmit)}
         className="edit-product-form"
-        sx={{ margin: "0 auto", maxWidth: 600, padding: 2 , bgcolor:"white", borderRadius:"5px"}} // Center the form with margins and padding
+        sx={{ m:5, maxWidth: 600, padding: 2 , bgcolor:"white", borderRadius:"5px"}} // Center the form with margins and padding
       >
         {loadingFromStore || isSubmitting ? (
           <Box className="edit-product-loader">

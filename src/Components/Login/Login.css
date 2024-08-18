@@ -75,4 +75,17 @@
     background-color: black;
     color: white;
   }
-  
+  /* Login.css */
+
+/* Hide the image and adjust the form layout for screens 599px or smaller */
+@media (max-width: 599px) {
+  .login-image {
+    display: none;
+  }
+
+  .login-form-container {
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+}

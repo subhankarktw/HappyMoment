@@ -153,7 +153,7 @@ export default function ShowProduct() {
                 </Grid>
               ))
             ) : (
-              <Typography variant="h6">No products available</Typography>
+              <Typography variant="h6" textAlign="center">No products available</Typography>
             )}
           </Grid>
         )}

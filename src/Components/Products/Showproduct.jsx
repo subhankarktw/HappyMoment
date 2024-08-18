@@ -107,7 +107,7 @@ export default function ShowProduct() {
             {error.message}
           </Typography>
         ) : (
-          <Grid container spacing={3}>
+          <Grid container spacing={3} sx={{display:"flex", justifyContent:"center", alignItems:"center",}}>
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product) => (
                 <Grid

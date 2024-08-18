@@ -43,7 +43,7 @@ export default function Profile() {
         </Grid>
       )}
 
-      <Box sx={{ width: "100%", maxWidth: 400 }}>
+      <Box sx={{ width: "100%", maxWidth: 400 , mb:24}}>
         <TextField
           label="First Name"
           variant="outlined"
@@ -73,6 +73,7 @@ export default function Profile() {
           InputProps={{
             readOnly: true,
           }}
+          
         />
       </Box>
     </Box>

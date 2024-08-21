@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import "./About.css"; // Import the CSS file
+import "./About.css"; 
 
 export default function HappyMomentsBlog() {
   return (

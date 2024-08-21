@@ -68,7 +68,7 @@ export default function Navbar() {
   }, [FirstName]);
 
   return (
-    <AppBar position="fixed"  sx={{ bgcolor: "white", color: "black" }}>
+    <AppBar position="fixed" sx={{ bgcolor: "white", color: "black" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box
@@ -78,7 +78,7 @@ export default function Navbar() {
             className="box-container"
           >
             <div className="logo">
-              <img src={img} alt=""  className="logo-image"  />
+              <img src={img} alt="" className="logo-image" />
             </div>
             <Typography
               variant="h6"
@@ -98,7 +98,7 @@ export default function Navbar() {
             </Typography>
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }} >
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="menu"
@@ -245,6 +245,20 @@ export default function Navbar() {
           <Box sx={{ display: "flex", alignItems: "center", ml: 2 }}>
             {isLogin ? (
               <>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mr: 2,
+                    display: {
+                      xs: "none", 
+                      sm: "none", 
+                      md: "block", 
+                    },
+                  }}
+                >
+                  {isLogged}
+                </Typography>
+
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
                     alt="Profile Picture"
@@ -276,7 +290,7 @@ export default function Navbar() {
                       to="/profile"
                       style={{ textDecoration: "none", color: "black" }}
                     >
-                      {isLogged}
+                      Profile
                     </Link>
                   </MenuItem>
                   <MenuItem

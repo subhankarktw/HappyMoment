@@ -1,11 +1,10 @@
 import { Box, Typography, TextField, Button, Grid } from "@mui/material";
 import React from "react";
-import "./Contact.css"; // Import the CSS file
+import "./Contact.css"; 
 
 export default function Contact() {
   return (
     <Box className="contact-container">
-      {/* Upper portion with the image */}
       <Box className="contact-image">
         <img
           src="images/contact.jpg"
@@ -15,9 +14,7 @@ export default function Contact() {
         />
       </Box>
 
-      {/* Lower portion with the form and map */}
       <Grid container sx={{ marginTop: 4 }}>
-        {/* Left side for the map */}
         <Grid item xs={12} md={6} className="contact-map-container">
           <iframe
             title="Google Map of Baharan, West Bengal"
@@ -31,7 +28,6 @@ export default function Contact() {
           ></iframe>
         </Grid>
 
-        {/* Right side for the form */}
         <Grid item xs={12} md={6}>
           <Box className="contact-form-container">
             <Typography variant="h4" className="contact-title">

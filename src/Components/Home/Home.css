@@ -1,38 +1,116 @@
+
 .home-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 16px; /* 4 * 4px = 16px */
-  gap: 16px; /* 4 * 4px = 16px */
-  background-color: white;
-  color: black;
-  font-family: monospace;
+  padding: 20px;
+}
+
+.carousel-container {
+  margin-bottom: 20px;
 }
 
 .section-box {
-  width: 95%;
-  padding: 16px; /* 2 * 8px = 16px */
-  background-color: #f5f5f5; /* Default background color */
-  border-radius: 8px; /* 2 * 4px = 8px */
-  text-align: center;
+  margin-bottom: 40px;
 }
 
-.section-box:nth-of-type(even) {
-  background-color: #e0f7fa; /* Alternate background color */
-}
-
-.section-image {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-  margin-bottom: 16px;
+.featured-posts {
+  background-color: #f5f5f5;
+  padding: 20px;
 }
 
 .section-title {
-  font-size: 1.25rem; /* Equivalent to h6 */
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-.section-description {
-  font-size: 1rem; /* Equivalent to body1 */
+.featured-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.featured-card img {
+  border-radius: 8px 8px 0 0;
+}
+
+.different-posts {
+  background-color: #fafafa;
+  padding: 20px;
+}
+
+.different-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.different-card img {
+  border-radius: 8px 8px 0 0;
+}
+
+.testimonials {
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.testimonial-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.testimonial-card img {
+  border-radius: 8px 8px 0 0;
+}
+
+.cta-subscription {
+  background-color: #e3f2fd;
+  padding: 20px;
+  text-align: center;
+}
+
+.subscribe-button {
+  margin-top: 20px;
+}
+
+.partners {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.partner-logo {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.modern-cta {
+  background-color: #d0f0c0;
+  padding: 20px;
+  text-align: center;
+}
+
+.join-button {
+  margin-top: 20px;
+}
+.cta-subscription {
+  position: relative; 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  color: white; 
+  padding: 2rem; 
+  text-align: center; 
+}
+
+.cta-subscription .section-title {
+  font-size: 2rem; 
+  margin-bottom: 1rem; 
+}
+
+.cta-subscription .section-description {
+  font-size: 1.2rem; 
+  margin-bottom: 1.5rem; 
+}
+
+.subscribe-button {
+  font-size: 1rem; 
 }

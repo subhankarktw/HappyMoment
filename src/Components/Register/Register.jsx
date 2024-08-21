@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { unwrapResult } from "@reduxjs/toolkit";
-import "./Register.css"; // Import the CSS file
+import "./Register.css"; 
 
 export default function Register() {
   const navigate = useNavigate();
@@ -74,10 +74,12 @@ export default function Register() {
   }, [reDirectLogin, navigate]);
 
   return (
-    <Grid container className="register-container" style={{ backgroundImage: `url(/images/home01.jpg)` }}>
-      <Grid item xs={false} sm={6} className="register-sidebar">
-        
-      </Grid>
+    <Grid
+      container
+      className="register-container"
+      style={{ backgroundImage: `url(/images/home01.jpg)` }}
+    >
+      <Grid item xs={false} sm={6} className="register-sidebar"></Grid>
 
       <Grid item xs={12} sm={6} className="register-form-container">
         <Typography component="h1" variant="h5" className="register-title">
@@ -167,10 +169,7 @@ export default function Register() {
                   </Button>
                 </label>
                 {imgName && (
-                  <Typography
-                    variant="body2"
-                    className="uploaded-file-name"
-                  >
+                  <Typography variant="body2" className="uploaded-file-name">
                     {imgName}
                   </Typography>
                 )}
@@ -200,11 +199,7 @@ export default function Register() {
               </Box>
             </Grid>
           </Grid>
-          <Grid
-            container
-            justifyContent="center"
-            className="login-redirect"
-          >
+          <Grid container justifyContent="center" className="login-redirect">
             <Grid item>
               <Typography variant="body2" className="login-text">
                 Already have an account?

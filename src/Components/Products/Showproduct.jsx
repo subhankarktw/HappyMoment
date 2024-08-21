@@ -56,8 +56,9 @@ export default function ShowProduct() {
   );
 
   const truncateDescription = (description) => {
-    return description.length > 400
-      ? description.slice(0, 400) + "..."
+    const maxLength = 400;
+    return description.length > maxLength
+      ? description.slice(0, maxLength) + "..."
       : description;
   };
 
@@ -107,7 +108,15 @@ export default function ShowProduct() {
             {error.message}
           </Typography>
         ) : (
-          <Grid container spacing={3} sx={{display:"flex", justifyContent:"center", alignItems:"center",}}>
+          <Grid
+            container
+            spacing={3}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product) => (
                 <Grid
@@ -118,7 +127,20 @@ export default function ShowProduct() {
                   key={product._id}
                   className="cards"
                 >
-                  <Card className="card">
+                  <Card
+                    className="card"
+                    sx={{
+                      height: {
+                        xs: "auto", // auto height for small screens
+                        sm: 620, // 500px height for screens between 600px and 900px
+                        md: 650, // 500px height for screens between 600px and 900px
+                        lg: 550, // 550px height for large screens
+                      },
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                    }}
+                  >
                     <img
                       src={`https://wtsacademy.dedicateddevelopers.us/uploads/product/${product?.image}`}
                       alt={product.title}
@@ -128,11 +150,15 @@ export default function ShowProduct() {
                       <Typography variant="h5" component="div">
                         <strong>{product.title}</strong>
                       </Typography>
-                      <Typography variant="body1" component="div">
+                      <Typography
+                        variant="body1"
+                        component="div"
+                        className="card-description"
+                      >
                         {truncateDescription(product.description)}
                       </Typography>
                     </CardContent>
-                    <Box className="card-buttons">
+                    <Box className="card-buttons" sx={{ mt: "auto" }}>
                       <Button
                         variant="contained"
                         className="edit-button"
@@ -153,7 +179,9 @@ export default function ShowProduct() {
                 </Grid>
               ))
             ) : (
-              <Typography variant="h6" textAlign="center">No products available</Typography>
+              <Typography variant="h6" textAlign="center">
+                No products available
+              </Typography>
             )}
           </Grid>
         )}

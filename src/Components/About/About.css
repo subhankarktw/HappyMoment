@@ -3,8 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 56px; /* Adjust based on your design */
-    gap: 32px; /* Adjust based on your design */
+    margin-top: 56px; 
+    gap: 32px; 
     background-color: white;
     color: black;
   }
@@ -12,7 +12,7 @@
   .happy-moments-blog-image {
     width: 100%;
     overflow: hidden;
-    border-radius: 8px; /* Adjust as needed */
+    border-radius: 8px; 
   }
   
   .happy-moments-blog-image img {
@@ -38,6 +38,6 @@
   
   .happy-moments-blog-box:last-of-type {
     background-color: #ffe0b2;
-    margin-bottom: 32px; /* Adjust based on your design */
+    margin-bottom: 32px; 
   }
   

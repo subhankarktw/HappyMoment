@@ -6,8 +6,8 @@
   .contact-image {
     width: 100%;
     height: 100%;
-    border-radius: 8px; /* Adjust as needed */
-    margin-top: 56px; /* Adjust based on your design */
+    border-radius: 8px;
+    margin-top: 56px; 
   }
   
   .contact-form-container {
@@ -22,7 +22,7 @@
   
   .contact-title {
     margin-bottom: 16px;
-    color: #1976d2; /* Primary blue */
+    color: #1976d2; 
   }
   
   .contact-description {
@@ -41,7 +41,7 @@
   
   .contact-textfield {
     color: black;
-    border-color: #1976d2; /* Primary blue */
+    border-color: #1976d2; 
   }
   
   .contact-textfield:hover .MuiOutlinedInput-notchedOutline {
@@ -61,12 +61,12 @@
   }
   
   .contact-button {
-    background-color: #1976d2; /* Primary blue */
+    background-color: #1976d2; 
     color: white;
   }
   
   .contact-button:hover {
-    background-color: #1565c0; /* Darker blue on hover */
+    background-color: #1565c0; 
   }
   
   .contact-map-container {

@@ -1,5 +1,3 @@
-
-
 .login-container {
     height: 100vh;
     display: flex;
@@ -75,9 +73,7 @@
     background-color: black;
     color: white;
   }
-  /* Login.css */
 
-/* Hide the image and adjust the form layout for screens 599px or smaller */
 @media (max-width: 599px) {
   .login-image {
     display: none;

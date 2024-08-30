@@ -133,20 +133,20 @@ export default function Home() {
           <Typography className="section-title">Featured Posts</Typography>
           <Grid container spacing={2}>
             {featuredPosts.map((post, index) => (
-              <Grid item xs={12} sm={4} key={index}>
+              <Grid item xs={12} sm={6} md={6} lg={4} key={index}>
                 <Card
                   className="featured-card"
                   sx={{
                     height: {
                       xs: "auto",
                       md: "auto",
-                      lg: 390,
+                      lg: 520,
                     },
                   }}
                 >
                   <CardMedia
                     component="img"
-                    height="140"
+                    height="250"
                     image={post.imgSrc}
                     alt={post.title}
                   />
@@ -168,14 +168,14 @@ export default function Home() {
           <Typography className="section-title">Explore More</Typography>
           <Grid container spacing={2}>
             {differentPosts.map((post, index) => (
-              <Grid item xs={12} sm={4} key={index}>
+              <Grid item xs={12} sm={6} md={6} lg={4} key={index}>
                 <Card
                   className="different-card"
                   sx={{
                     height: {
                       xs: "auto",
                       md: "auto",
-                      lg: 310,
+                      lg: 480,
                     },
                     border: "1px solid #ddd",
                     borderRadius: "10px",
@@ -183,7 +183,7 @@ export default function Home() {
                 >
                   <CardMedia
                     component="img"
-                    height="140"
+                    height="250"
                     image={post.imgSrc}
                     alt={post.title}
                   />

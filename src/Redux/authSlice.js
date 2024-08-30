@@ -8,7 +8,7 @@ const initialState = {
   reDirectHome: null,
   upload_status: "idle",
   user: null,
-  profilePic: null,
+  //profilePic: null,
 };
 
 export const signup = createAsyncThunk("user/signup", async (formdata) => {

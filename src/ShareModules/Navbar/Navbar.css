@@ -9,4 +9,8 @@
   width: 50px;
 }
 
-
+@media(max-width:480px){
+  .title, .title-phone-menu{
+    font-size: 15px !important;
+  }
+}

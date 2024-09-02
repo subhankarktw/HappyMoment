@@ -17,7 +17,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import img from "./children.png";
 import { profile_Url } from "../../Helper/Helper";
-import "../Navbar/Navbar.css";
+import "./Navbar.css";
 
 const Navitems = [
   { name: "Home", route: "/" },
@@ -125,20 +125,21 @@ export default function Navbar() {
                 />
               </div>
               <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{
-                  mr: 2,
-                  ml: 1,
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              >
-                Happy Moment
-              </Typography>
+              variant="h6"
+              noWrap
+              component="div"
+              className="title-phone-menu"
+              sx={{
+                mr: 2,
+                ml: 3,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              Happy Moment
+            </Typography>
             </Box>
             <Menu
               id="menu-appbar"

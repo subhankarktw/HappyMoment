@@ -18,6 +18,7 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { reDirectHome } = useSelector((state) => state.authentication);
+
   const {
     register,
     handleSubmit,
@@ -30,13 +31,13 @@ export default function Login() {
   });
 
   const mutation = useMutation({
-    mutationFn: async (formdata) => {
-      const resultAction = await dispatch(signin(formdata));
+    mutationFn: async (formData) => {
+      const resultAction = await dispatch(signin(formData));
       return resultAction.payload;
     },
     onSuccess: (data) => {
       localStorage.setItem("token", data.token);
-      navigate("/"); 
+      navigate("/");
     },
     onError: (error) => {
       console.error("Login failed", error);
@@ -48,16 +49,16 @@ export default function Login() {
   };
 
   useEffect(() => {
-    const RedirectUser = () => {
-      let token = localStorage.getItem("token");
-      let isLogin = window.location.pathname.toLowerCase() === "/login";
+    const redirectUser = () => {
+      const token = localStorage.getItem("token");
+      const isLoginPage = window.location.pathname.toLowerCase() === "/login";
 
-      if (token) {
-        isLogin && navigate("/");
+      if (token && isLoginPage) {
+        navigate("/");
       }
     };
 
-    RedirectUser();
+    redirectUser();
   }, [reDirectHome, navigate]);
 
   return (
@@ -73,7 +74,6 @@ export default function Login() {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            height: "100vh",
           }}
         >
           <img
@@ -84,21 +84,16 @@ export default function Login() {
         </Box>
       </Grid>
 
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        className="login-form-container"
-      >
-        <Typography component="h1" variant="h4" className="login-title">
-          Login
-        </Typography>
+      <Grid item xs={12} sm={6} className="login-form-container">
         <Box
           component="form"
           onSubmit={handleSubmit(onSubmit)}
           className="login-form"
         >
-          <Grid container spacing={2}>
+          <Typography component="h1" variant="h4" className="login-title">
+            Login
+          </Typography>
+          <Grid container spacing={2} sx={{ marginTop: "1rem" }}>
             <Grid item xs={12}>
               <TextField
                 fullWidth
@@ -160,13 +155,21 @@ export default function Login() {
             sx={{ mt: 2 }}
           >
             <Typography className="login-register-link">
-              Not registered? Please{" "}
+              Not registered? Please  
             </Typography>
             <Button
               component={Link}
               to="/register"
               variant="outlined"
-              className="login-register-button"
+              sx={{
+                backgroundColor: "black",
+                color: "white",
+                "&:hover": {
+                  backgroundColor: "white",
+                  color: "black",
+                },
+                ml: 1,
+              }}
             >
               Register
             </Button>

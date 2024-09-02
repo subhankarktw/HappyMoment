@@ -35,12 +35,13 @@ export default function Rout() {
   const publicRoutes = [
     { path: "/register", Component: <Register /> },
     { path: "/login", Component: <Login /> },
+    { path: "/contact", Component: <Contact /> },
   ];
 
   const privateRoutes = [
     { path: "/", Component: <Home /> },
     { path: "/about", Component: <About /> },
-    { path: "/contact", Component: <Contact /> },
+
     { path: "/addpost", Component: <Addproduct /> },
     { path: "/showpost", Component: <Showproduct /> },
     { path: "/profile", Component: <Profile /> },

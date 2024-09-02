@@ -1,87 +1,104 @@
 .login-container {
-    height: 100vh;
-    display: flex;
-    background-size: cover;
-    background-position: center;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+/* .login-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+} */
+
+.login-image-img {
+  width: 400px;
+  height: 400px;
   
-  .login-image {
+}
+
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
+}
+
+.login-title {
+  color: black;
+  text-align: center;
+  font-family: monospace;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.login-form {
+  padding: 2rem;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-form-text-field {
+  font-family: monospace;
+}
+
+.login-form-button {
+  font-family: monospace;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: black;
+  color: white;
+}
+
+.login-form-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.login-register-link {
+  font-family: monospace;
+  color: black;
+}
+
+.login-register-button {
+  font-family: monospace;
+  border-color: black;
+  color: black;
+}
+
+.login-register-button:hover {
+  border-color: black;
+  background-color: black;
+  color: white;
+}
+
+/* Styles for screens up to 599px */
+@media (max-width: 599px) {
+  .login-container {
+    flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    height: auto;
   }
-  
-  .login-image-img {
-    width: 400px;
-    height: 400px;
-  }
-  
-  .login-form-container {
+  /* .login-image {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    height: 100vh;
-    padding: 2rem;
-  }
-  
-  .login-title {
-    color: white;
-    font-family: monospace;
-    font-weight: bold;
-    margin-top: 6rem;
-  }
-  
-  .login-form {
-    margin-top: 2rem;
-    padding: 2rem;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .login-form-text-field {
-    font-family: monospace;
-  }
-  
-  .login-form-button {
-    font-family: monospace;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    background-color: black;
-    color: white;
-  }
-  
-  .login-form-button:hover {
-    background-color: white;
-    color: black;
-  }
-  
-  .login-register-link {
-    font-family: monospace;
-    color: black;
-  }
-  
-  .login-register-button {
-    font-family: monospace;
-    border-color: black;
-    color: black;
-  }
-  
-  .login-register-button:hover {
-    border-color: black;
-    background-color: black;
-    color: white;
-  }
-
-@media (max-width: 599px) {
-  .login-image {
-    display: none;
-  }
-
-  .login-form-container {
-    width: 100%;
-    padding: 16px;
-    box-sizing: border-box;
+    flex-direction: column;
+    margin: auto;
+  } */
+  .login-image-img {
+    width: 200px;
+    height: 200px;
+    margin-top: 65px;
   }
 }

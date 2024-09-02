@@ -123,7 +123,12 @@ export default function Home() {
       borderColor: "#c0c0c0",
     },
   ];
-
+  const truncateDescription = (description) => {
+    const maxLength = 240;
+    return description.length > maxLength
+      ? description.slice(0, maxLength) + "..."
+      : description;
+  };
   return (
     <>
       <Carousel className="carousel-container" />
@@ -138,9 +143,10 @@ export default function Home() {
                   className="featured-card"
                   sx={{
                     height: {
-                      xs: "auto",
-                      md: "auto",
-                      lg: 520,
+                      xs: "auto", // auto height for small screens
+                      sm: 500, // 500px height for screens between 600px and 900px
+                      md: 450, // 500px height for screens between 600px and 900px
+                      lg: 450, // 550px height for large screens
                     },
                   }}
                 >
@@ -155,7 +161,7 @@ export default function Home() {
                       {post.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {post.description}
+                      {truncateDescription(post.description)}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -173,9 +179,10 @@ export default function Home() {
                   className="different-card"
                   sx={{
                     height: {
-                      xs: "auto",
-                      md: "auto",
-                      lg: 480,
+                      xs: "auto", // auto height for small screens
+                      sm: 500, // 500px height for screens between 600px and 900px
+                      md: 450, // 500px height for screens between 600px and 900px
+                      lg: 450, // 550px height for large screens
                     },
                     border: "1px solid #ddd",
                     borderRadius: "10px",
@@ -192,7 +199,7 @@ export default function Home() {
                       {post.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {post.description}
+                      {truncateDescription(post.description)}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -211,6 +218,12 @@ export default function Home() {
                 <Card
                   className="testimonial-card"
                   sx={{
+                    height: {
+                      xs: "auto", // auto height for small screens
+                      sm: 330, // 500px height for screens between 600px and 900px
+                      md: 180, // 500px height for screens between 600px and 900px
+                      lg: 150, // 550px height for large screens
+                    },
                     bgcolor: testimonial.bgColor,
                     border: `1px solid ${testimonial.borderColor}`,
                     borderRadius: "10px",
